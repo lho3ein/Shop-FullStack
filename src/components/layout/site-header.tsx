@@ -245,21 +245,12 @@ export function SiteHeader() {
 
         {/* Mobile search */}
         <form onSubmit={handleSearch} className="md:hidden pb-3">
-          <div className="relative">
-            <Input
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="جستجو در محصولات..."
-              className="h-11 pl-10 rounded-2xl bg-slate-50 border-slate-200"
-            />
-            <button
-              type="submit"
-              className="absolute left-1 top-1 h-9 w-9 bg-primary text-white rounded-xl flex items-center justify-center active:scale-90 transition-transform"
-              aria-label="جستجو"
-            >
-              <Search className="h-4 w-4" />
-            </button>
-          </div>
+          <SearchPreview
+            defaultValue={search}
+            onNavigate={closeMobile}
+            className="w-full"
+            autoFocus={mobileMenuOpen}
+          />
         </form>
       </div>
 
