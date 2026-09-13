@@ -11,7 +11,13 @@ const productSchema = z.object({
   price: z.number().positive("قیمت باید بیشتر از صفر باشد"),
   originalPrice: z.number().nullable().optional(),
   stock: z.number().int().min(0),
-  image: z.string().url("آدرس تصویر نامعتبر است"),
+  image: z
+    .string()
+    .min(1, "تصویر اصلی را وارد کنید")
+    .refine(
+      (v) => v.startsWith("/") || v.startsWith("http://") || v.startsWith("https://"),
+      "آدرس تصویر معتبر نیست"
+    ),
   images: z.array(z.string()).optional(),
   colors: z.array(z.string()).optional(),
   storageOptions: z.array(z.string()).optional(),

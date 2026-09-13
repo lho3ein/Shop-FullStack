@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
 import { useCartStore } from "@/lib/store/cart-store";
+import { SearchPreview } from "@/components/search/search-preview";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -51,6 +52,7 @@ export function SiteHeader() {
   const [search, setSearch] = useState("");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const router = useRouter();
+  const closeMobile = () => setMobileMenuOpen(false);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -102,23 +104,11 @@ export function SiteHeader() {
           </Link>
 
           {/* Search */}
-          <form onSubmit={handleSearch} className="flex-1 hidden md:flex max-w-xl mx-auto">
-            <div className="relative w-full group">
-              <Input
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                placeholder="جستجو در محصولات..."
-                className="h-11 pl-11 rounded-2xl bg-slate-50 border-slate-200 focus-visible:bg-white focus-visible:ring-[3px] focus-visible:ring-primary/20 transition-all"
-              />
-              <button
-                type="submit"
-                className="absolute left-1.5 top-1.5 h-8 w-8 bg-primary text-white rounded-xl flex items-center justify-center hover:bg-primary/90 transition-all active:scale-90"
-                aria-label="جستجو"
-              >
-                <Search className="h-4 w-4" />
-              </button>
-            </div>
-          </form>
+          <SearchPreview
+            defaultValue={search}
+            onNavigate={closeMobile}
+            className="hidden md:block flex-1 max-w-xl mx-auto"
+          />
 
           {/* Actions */}
           <div className="flex items-center gap-2 mr-auto md:mr-0">

@@ -5,6 +5,8 @@ import { Toaster } from "react-hot-toast";
 import { Providers } from "@/components/providers";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
+import { GoogleTagManager } from "@/components/analytics/google-tag-manager";
+import { GoogleTagManagerScript } from "@/components/analytics/google-tag-manager";
 
 const vazirmatn = Vazirmatn({
   variable: "--font-vazirmatn",
@@ -53,6 +55,7 @@ export default function RootLayout({
     <html lang="fa" dir="rtl" className={`${vazirmatn.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-[#f5f7fa]">
         <Providers>
+          <GoogleTagManager />
           <SiteHeader />
           <main className="flex-1">{children}</main>
           <SiteFooter />

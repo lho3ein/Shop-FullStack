@@ -1,0 +1,69 @@
+▲ Next.js 16.3.4 (Turbopack)
+- Environments: .env
+✓ Running next.config.ts took 53ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 2.7s
+  Running TypeScript ...
+  Finished TypeScript in 3.1s ...
+  Collecting page data using 3 workers ...
+  Generating static pages using 3 workers (0/34) ...
+  Generating static pages using 3 workers (8/34) 
+  Generating static pages using 3 workers (16/34) 
+  Generating static pages using 3 workers (25/34) 
+✓ Generating static pages using 3 workers (34/34) in 8.1s
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /admin
+├ ƒ /admin/categories
+├ ƒ /admin/orders
+├ ƒ /admin/orders/[id]
+├ ƒ /admin/products
+├ ƒ /admin/products/[id]/edit
+├ ƒ /admin/products/new
+├ ƒ /admin/users
+├ ƒ /api/addresses
+├ ƒ /api/addresses/[id]
+├ ƒ /api/addresses/[id]/default
+├ ƒ /api/admin/categories
+├ ƒ /api/admin/categories/[id]
+├ ƒ /api/admin/orders/[id]
+├ ƒ /api/admin/products
+├ ƒ /api/admin/products/[id]
+├ ƒ /api/admin/products/upload
+├ ƒ /api/auth/[...nextauth]
+├ ƒ /api/auth/register
+├ ƒ /api/cart
+├ ƒ /api/orders
+├ ƒ /api/payment/callback
+├ ƒ /api/search
+├ ƒ /api/user/password
+├ ƒ /api/user/profile
+├ ƒ /api/wishlist
+├ ƒ /api/wishlist/[id]
+├ ○ /cart
+├ ƒ /checkout
+├ ƒ /dashboard
+├ ƒ /dashboard/addresses
+├ ƒ /dashboard/orders
+├ ƒ /dashboard/orders/[id]
+├ ƒ /dashboard/profile
+├ ƒ /dashboard/wishlist
+├ ○ /login
+├ ƒ /payment/failed
+├ ƒ /payment/success
+├ ƒ /product/[slug]
+├ ƒ /products
+├ ○ /register
+├ ○ /robots.txt
+└ ○ /sitemap.xml
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

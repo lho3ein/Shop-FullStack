@@ -52,10 +52,22 @@ const categoryItems = [
 ];
 
 const services = [
-  { icon: ShieldCheck, title: "ضمانت اصالت کالا", desc: "تضمین اصل بودن تمام محصولات" },
+  {
+    icon: ShieldCheck,
+    title: "ضمانت اصالت کالا",
+    desc: "تضمین اصل بودن تمام محصولات",
+  },
   { icon: Truck, title: "ارسال سریع و رایگان", desc: "ارسال به سراسر ایران" },
-  { icon: RotateCcw, title: "بازگشت تا ۷ روز", desc: "برگشت آسان کالا بدون قید و شرط" },
-  { icon: Headset, title: "پشتیبانی ۲۴ ساعته", desc: "پاسخگویی همه‌روزه تیم پشتیبانی" },
+  {
+    icon: RotateCcw,
+    title: "بازگشت تا ۷ روز",
+    desc: "برگشت آسان کالا بدون قید و شرط",
+  },
+  {
+    icon: Headset,
+    title: "پشتیبانی ۲۴ ساعته",
+    desc: "پاسخگویی همه‌روزه تیم پشتیبانی",
+  },
 ];
 
 export default async function HomePage() {
@@ -103,11 +115,16 @@ export default async function HomePage() {
                 </span>
               </h1>
               <p className="text-blue-100/80 text-sm lg:text-base leading-relaxed mb-8 max-w-lg">
-                خرید مطمئن انواع گوشی موبایل اپل، سامسونگ و شیائومی به همراه لوازم جانبی
-                با گارانتی معتبر، ارسال سریع و پشتیبانی حرفه‌ای از موبایل‌سنتر.
+                خرید مطمئن انواع گوشی موبایل اپل، سامسونگ و شیائومی به همراه
+                لوازم جانبی با گارانتی معتبر، ارسال سریع و پشتیبانی حرفه‌ای از
+                موبایل‌سنتر.
               </p>
-              <div className="flex flex-wrap gap-3">
-                <Button size="lg" className="bg-white text-primary hover:bg-blue-50 h-13 px-8 text-base" asChild>
+              <div className="flex items-center flex-wrap gap-3">
+                <Button
+                  size="lg"
+                  className="bg-white text-primary hover:bg-blue-50 h-13 px-8 text-base"
+                  asChild
+                >
                   <Link href="/products">
                     <ShoppingBag className="ml-2 h-5 w-5" />
                     مشاهده محصولات
@@ -116,7 +133,7 @@ export default async function HomePage() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-white/30 text-white hover:bg-white/10 hover:text-white h-13 px-8 text-base border-2"
+                  className="border-white/30 text-white bg-white/5 hover:bg-white/10 hover:text-white h-13.5 px-8 text-base border-2"
                   asChild
                 >
                   <Link href="/products?category=phones">خرید گوشی</Link>
@@ -174,12 +191,17 @@ export default async function HomePage() {
         <div className="bg-white rounded-2xl shadow-lg shadow-slate-200/60 border border-slate-100 lg:scale-110 origin-center px-2">
           <div className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-x-reverse divide-slate-100">
             {services.map((s, i) => (
-              <div key={i} className="flex items-center gap-3 p-4 lg:px-6 justify-center">
+              <div
+                key={i}
+                className="flex items-center gap-3 p-4 lg:px-6 justify-center"
+              >
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
                   <s.icon className="w-6 h-6 text-primary" />
                 </div>
                 <div>
-                  <p className="font-semibold text-sm text-slate-800">{s.title}</p>
+                  <p className="font-semibold text-sm text-slate-800">
+                    {s.title}
+                  </p>
                   <p className="text-xs text-muted-foreground">{s.desc}</p>
                 </div>
               </div>
@@ -192,10 +214,17 @@ export default async function HomePage() {
       <section className="container mx-auto px-4 mt-16 lg:mt-24">
         <div className="flex items-end justify-between mb-6">
           <div>
-            <h2 className="text-2xl font-black text-slate-900">دسته‌بندی محصولات</h2>
-            <p className="text-sm text-muted-foreground mt-1">بر اساس نیاز خود انتخاب کنید</p>
+            <h2 className="text-2xl font-black text-slate-900">
+              دسته‌بندی محصولات
+            </h2>
+            <p className="text-sm text-muted-foreground mt-1">
+              بر اساس نیاز خود انتخاب کنید
+            </p>
           </div>
-          <Link href="/products" className="hidden sm:flex items-center text-sm text-primary hover:gap-3 gap-2 font-medium transition-all">
+          <Link
+            href="/products"
+            className="hidden sm:flex items-center text-sm text-primary hover:gap-3 gap-2 font-medium transition-all"
+          >
             مشاهده همه
             <ArrowLeft className="w-4 h-4" />
           </Link>
@@ -207,11 +236,15 @@ export default async function HomePage() {
               href={`/products?category=${cat.slug}`}
               className="group flex items-center gap-4 bg-white rounded-2xl border border-slate-100 p-6 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all"
             >
-              <div className={`w-16 h-16 rounded-2xl flex items-center justify-center ${cat.color} group-hover:scale-110 transition-transform`}>
+              <div
+                className={`w-16 h-16 rounded-2xl flex items-center justify-center ${cat.color} group-hover:scale-110 transition-transform`}
+              >
                 <cat.icon className="w-8 h-8" />
               </div>
               <div className="flex-1">
-                <p className="font-bold text-slate-900 group-hover:text-primary transition-colors">{cat.name}</p>
+                <p className="font-bold text-slate-900 group-hover:text-primary transition-colors">
+                  {cat.name}
+                </p>
                 <p className="text-sm text-muted-foreground">{cat.count}</p>
               </div>
               <ChevronLeft className="w-5 h-5 text-slate-300 group-hover:text-primary transition-colors" />
@@ -228,9 +261,14 @@ export default async function HomePage() {
               <Zap className="w-6 h-6 text-amber-500" />
               پیشنهادهای ویژه
             </h2>
-            <p className="text-sm text-muted-foreground mt-1">محبوب‌ترین کالاها با تخفیف‌های ویژه</p>
+            <p className="text-sm text-muted-foreground mt-1">
+              محبوب‌ترین کالاها با تخفیف‌های ویژه
+            </p>
           </div>
-          <Link href="/products?sort=featured" className="hidden sm:flex items-center gap-2 text-sm text-primary font-medium hover:gap-3 transition-all">
+          <Link
+            href="/products?sort=featured"
+            className="hidden sm:flex items-center gap-2 text-sm text-primary font-medium hover:gap-3 transition-all"
+          >
             مشاهده همه
             <ArrowLeft className="w-4 h-4" />
           </Link>
@@ -256,10 +294,13 @@ export default async function HomePage() {
                 <span className="block text-blue-300">بر گوشی‌های آیفون</span>
               </h3>
               <p className="text-blue-100/80 mb-6 max-w-md">
-                به مناسبت فصل جدید، قیمت گوشی‌های آیفون را تا ۳۰ درصد کاهش دادیم.
-                همین حالا خرید کنید و از ارسال رایگان بهره‌مند شوید.
+                به مناسبت فصل جدید، قیمت گوشی‌های آیفون را تا ۳۰ درصد کاهش
+                دادیم. همین حالا خرید کنید و از ارسال رایگان بهره‌مند شوید.
               </p>
-              <Button className="bg-amber-400 text-slate-900 hover:bg-amber-300 h-12 px-8" asChild>
+              <Button
+                className="bg-amber-400 text-slate-900 hover:bg-amber-300 h-12 px-8"
+                asChild
+              >
                 <Link href="/products?brand=apple">
                   خرید آیفون
                   <ChevronLeft className="mr-2 w-4 h-4" />
@@ -283,7 +324,9 @@ export default async function HomePage() {
 
       {/* ===== BRANDS ===== */}
       <section className="container mx-auto px-4 mt-16 lg:mt-20">
-        <h2 className="text-2xl font-black text-slate-900 mb-6">برندهای معتبر</h2>
+        <h2 className="text-2xl font-black text-slate-900 mb-6">
+          برندهای معتبر
+        </h2>
         <div className="bg-white rounded-2xl border border-slate-100 p-6">
           <div className="flex flex-wrap items-center justify-center gap-x-14 gap-y-6">
             {brands.map((brand) => (
@@ -293,7 +336,9 @@ export default async function HomePage() {
                 className="text-lg font-black text-slate-400 hover:text-primary transition-colors flex items-center gap-2"
               >
                 <div className="w-10 h-10 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center">
-                  <span className="text-primary/80 font-black text-sm">{brand.name[0]}</span>
+                  <span className="text-primary/80 font-black text-sm">
+                    {brand.name[0]}
+                  </span>
                 </div>
                 {brand.name}
               </Link>
@@ -311,10 +356,15 @@ export default async function HomePage() {
               <div>
                 <h2 className="text-2xl font-black text-slate-900 flex items-center gap-2">
                   جدیدترین محصولات
-                  <span className="text-sm font-normal text-muted-foreground mr-1">تازه رسیده‌ها</span>
+                  <span className="text-sm font-normal text-muted-foreground mr-1">
+                    تازه رسیده‌ها
+                  </span>
                 </h2>
               </div>
-              <Link href="/products?sort=newest" className="hidden sm:flex items-center gap-2 text-sm text-primary font-medium hover:gap-3 transition-all">
+              <Link
+                href="/products?sort=newest"
+                className="hidden sm:flex items-center gap-2 text-sm text-primary font-medium hover:gap-3 transition-all"
+              >
                 مشاهده همه
                 <ArrowLeft className="w-4 h-4" />
               </Link>
@@ -324,7 +374,9 @@ export default async function HomePage() {
 
           {/* Best sellers */}
           <aside>
-            <h2 className="text-2xl font-black text-slate-900 mb-6">پرفروش‌ترین‌ها</h2>
+            <h2 className="text-2xl font-black text-slate-900 mb-6">
+              پرفروش‌ترین‌ها
+            </h2>
             <div className="space-y-3">
               {bestSellers.map((p, i) => (
                 <Link
@@ -333,11 +385,19 @@ export default async function HomePage() {
                   className="group flex gap-3 bg-white rounded-xl border border-slate-100 p-3 hover:border-primary/30 hover:shadow-md transition-all"
                 >
                   <div className="relative w-16 h-16 rounded-lg bg-slate-50 overflow-hidden shrink-0">
-                    <Image src={p.image} alt={p.name} fill className="object-contain" sizes="64px" />
+                    <Image
+                      src={p.image}
+                      alt={p.name}
+                      fill
+                      className="object-contain"
+                      sizes="64px"
+                    />
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-start justify-between gap-1">
-                      <span className="font-black text-primary text-lg -mt-1">{toFa(i + 1)}</span>
+                      <span className="font-black text-primary text-lg -mt-1">
+                        {toFa(i + 1)}
+                      </span>
                     </div>
                     <p className="text-xs font-medium text-slate-800 line-clamp-2 group-hover:text-primary transition-colors">
                       {p.name}
@@ -359,7 +419,11 @@ export default async function HomePage() {
                 <p className="text-sm text-blue-100/80 mb-4">
                   با اپلیکیشن ما، خرید آسان‌تر و تخفیف‌های ویژه‌تر می‌شود!
                 </p>
-                <Button size="sm" className="bg-white text-primary hover:bg-blue-50" asChild>
+                <Button
+                  size="sm"
+                  className="bg-white text-primary hover:bg-blue-50"
+                  asChild
+                >
                   <Link href="/">دانلود اپلیکیشن</Link>
                 </Button>
               </div>
@@ -376,19 +440,22 @@ export default async function HomePage() {
           </h2>
           <div className="space-y-3 text-sm text-slate-600 leading-relaxed">
             <p>
-              فروشگاه اینترنتی موبایل‌سنتر با هدف ارائه بهترین تجربه خرید آنلاین گوشی موبایل،
-              تبلت و لوازم جانبی فعالیت می‌کند. ما با عرضه محصولات اورجینال از برندهای معتبر
-              جهانی از جمله اپل، سامسونگ، شیائومی، گوگل و هواوی، تمام تلاش خود را برای
-              جلب رضایت شما عزیزان به کار می‌گیریم.
+              فروشگاه اینترنتی موبایل‌سنتر با هدف ارائه بهترین تجربه خرید آنلاین
+              گوشی موبایل، تبلت و لوازم جانبی فعالیت می‌کند. ما با عرضه محصولات
+              اورجینال از برندهای معتبر جهانی از جمله اپل، سامسونگ، شیائومی،
+              گوگل و هواوی، تمام تلاش خود را برای جلب رضایت شما عزیزان به کار
+              می‌گیریم.
             </p>
             <p>
-              تمامی محصولات موجود در فروشگاه موبایل‌سنتر دارای <strong>ضمانت اصالت کالا</strong> و
-              <strong>گارانتی معتبر</strong> هستند و در کوتاه‌ترین زمان ممکن به سراسر کشور ارسال می‌شوند.
+              تمامی محصولات موجود در فروشگاه موبایل‌سنتر دارای{" "}
+              <strong>ضمانت اصالت کالا</strong> و<strong>گارانتی معتبر</strong>{" "}
+              هستند و در کوتاه‌ترین زمان ممکن به سراسر کشور ارسال می‌شوند.
               همچنین امکان بازگشت کالا تا ۷ روز پس از تحویل برای شما فراهم است.
             </p>
             <p>
-              برای خرید گوشی موبایل با بهترین قیمت و یا مشاهده جدیدترین مدل‌های موبایل، همین حالا
-              از فروشگاه موبایل‌سنتر دیدن کنید و از تخفیف‌های ویژه بهره‌مند شوید.
+              برای خرید گوشی موبایل با بهترین قیمت و یا مشاهده جدیدترین مدل‌های
+              موبایل، همین حالا از فروشگاه موبایل‌سنتر دیدن کنید و از تخفیف‌های
+              ویژه بهره‌مند شوید.
             </p>
           </div>
         </div>

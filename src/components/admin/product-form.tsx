@@ -14,6 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { ImageUploader } from "@/components/admin/image-uploader";
 import { Loader2, Plus, X } from "lucide-react";
 import { slugify } from "@/lib/format";
 import toast from "react-hot-toast";
@@ -63,7 +64,6 @@ export function ProductForm({ categories, brands, initial, isEdit }: ProductForm
   const [storages, setStorages] = useState<string[]>(initial?.storageOptions ?? []);
   const [storageInput, setStorageInput] = useState("");
   const [images, setImages] = useState<string[]>(initial?.images ?? []);
-  const [imageInput, setImageInput] = useState("");
   const [specs, setSpecs] = useState<Record<string, string>>(
     initial?.specifications ? JSON.parse(initial.specifications) : {}
   );
@@ -106,13 +106,6 @@ export function ProductForm({ categories, brands, initial, isEdit }: ProductForm
     if (storageInput.trim()) {
       setStorages((s) => [...s, storageInput.trim()]);
       setStorageInput("");
-    }
-  };
-
-  const addImage = () => {
-    if (imageInput.trim()) {
-      setImages((im) => [...im, imageInput.trim()]);
-      setImageInput("");
     }
   };
 
@@ -318,45 +311,54 @@ export function ProductForm({ categories, brands, initial, isEdit }: ProductForm
       {/* Images */}
       <div className="bg-white rounded-2xl border border-slate-100 p-6 space-y-4">
         <h2 className="font-bold text-slate-900 text-lg">تصاویر</h2>
+        <p className="text-xs text-muted-foreground">
+          از سیستم خود عکس آپلود کنید یا آدرس تصویر را وارد نمایید
+        </p>
 
-        <div className="space-y-2">
-          <Label htmlFor="image">تصویر اصلی (URL)</Label>
-          <Input
-            id="image"
-            dir="ltr"
+        <div className="flex gap-4 items-start">
+          <ImageUploader
             value={form.image}
-            onChange={(e) => update("image", e.target.value)}
-            className="text-left"
-            placeholder="https://..."
-            required
+            onChange={(url) => update("image", url)}
+            onClear={() => update("image", "")}
           />
+          <div className="flex-1 space-y-2 min-w-[200px]">
+            <Label htmlFor="image">تصویر اصلی (آدرس)</Label>
+            <Input
+              id="image"
+              dir="ltr"
+              value={form.image}
+              onChange={(e) => update("image", e.target.value)}
+              className="text-left"
+              placeholder="/products/... یا https://..."
+              required
+            />
+            <p className="text-xs text-muted-foreground">یا از باکس کناری عکس آپلود کنید</p>
+          </div>
         </div>
 
         <div className="space-y-2">
           <Label>تصاویر گالری</Label>
-          <div className="flex gap-2">
-            <Input
-              dir="ltr"
-              value={imageInput}
-              onChange={(e) => setImageInput(e.target.value)}
-              className="text-left"
-              placeholder="https://..."
-            />
-            <Button type="button" variant="outline" onClick={addImage}>
-              <Plus className="w-4 h-4" />
-            </Button>
+          <div className="flex flex-wrap gap-3">
+            {images.map((img, i) => (
+              <ImageUploader
+                key={i}
+                size="sm"
+                value={img}
+                onChange={(url) =>
+                  setImages((im) => im.map((x, idx) => (idx === i ? url : x)))
+                }
+                onClear={() => setImages((im) => im.filter((_, idx) => idx !== i))}
+              />
+            ))}
+            {images.length < 8 && (
+              <ImageUploader
+                size="sm"
+                onChange={(url) => setImages((im) => [...im, url])}
+              />
+            )}
           </div>
-          {images.length > 0 && (
-            <div className="flex flex-wrap gap-2">
-              {images.map((img, i) => (
-                <div key={i} className="flex items-center gap-1 bg-slate-50 border rounded-lg px-2 py-1.5 text-xs max-w-[220px]">
-                  <span className="truncate text-slate-600" dir="ltr">{img}</span>
-                  <button type="button" onClick={() => setImages((im) => im.filter((_, idx) => idx !== i))}>
-                    <X className="w-3.5 h-3.5 text-red-500" />
-                  </button>
-                </div>
-              ))}
-            </div>
+          {images.length === 0 && (
+            <p className="text-xs text-muted-foreground">هنوز تصویری در گالری نیست؛ روی آیکون + کلیک کنید</p>
           )}
         </div>
       </div>

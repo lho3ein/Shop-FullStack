@@ -252,3 +252,15 @@ model WishlistItem {
   @@unique([userId, productId])
   @@map("wishlist_items")
 }
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String?
+  phone     String?
+  subject   String?
+  message   String
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@map("contact_messages")
+}
