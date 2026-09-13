@@ -3,16 +3,12 @@ import Link from "next/link";
 import {
   Smartphone,
   ShieldCheck,
-  Truck,
-  RotateCcw,
   Headset,
-  Star,
   BadgeCheck,
-  Users,
   PackageCheck,
   Sparkles,
-  CheckCircle2,
   Heart,
+  LaptopMinimal,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -52,10 +48,26 @@ const stats = [
 ];
 
 const timeline = [
-  { year: "۱۳۹۶", title: "آغاز فعالیت", desc: "تیم موبایل‌سنتر با تمرکز بر فروش تخصصی گوشی موبایل کار خود را آغاز کرد." },
-  { year: "۱۳۹۹", title: "راه‌اندازی وب‌سایت", desc: "بستر فروش آنلاین با هدف تجربه خریدی ساده، شفاف و مطمئن معرفی شد." },
-  { year: "۱۴۰۱", title: "تنوع کامل کالا", desc: "علاوه بر گوشی، تبلت و لوازم جانبی نیز به سبد محصولات اضافه شد." },
-  { year: "۱۴۰۴", title: "همین امروز", desc: "با تکیه بر اعتماد شما، به توسعه خدمات و ارتقای تجربه خرید ادامه می‌دهیم." },
+  {
+    year: "۱۳۹۶",
+    title: "آغاز فعالیت",
+    desc: "تیم موبایل‌سنتر با تمرکز بر فروش تخصصی گوشی موبایل کار خود را آغاز کرد.",
+  },
+  {
+    year: "۱۳۹۹",
+    title: "راه‌اندازی وب‌سایت",
+    desc: "بستر فروش آنلاین با هدف تجربه خریدی ساده، شفاف و مطمئن معرفی شد.",
+  },
+  {
+    year: "۱۴۰۱",
+    title: "تنوع کامل کالا",
+    desc: "علاوه بر گوشی، تبلت و لوازم جانبی نیز به سبد محصولات اضافه شد.",
+  },
+  {
+    year: "۱۴۰۴",
+    title: "همین امروز",
+    desc: "با تکیه بر اعتماد شما، به توسعه خدمات و ارتقای تجربه خرید ادامه می‌دهیم.",
+  },
 ];
 
 export default function AboutPage() {
@@ -63,7 +75,14 @@ export default function AboutPage() {
     <div className="min-h-screen bg-[#f5f7fa]">
       {/* Hero */}
       <section className="relative overflow-hidden bg-gradient-to-bl from-primary via-primary to-violet-700 text-white">
-        <div className="absolute inset-0 opacity-[0.07]" style={{ backgroundImage: "radial-gradient(circle at 20% 30%, white 1px, transparent 1px)", backgroundSize: "22px 22px" }} />
+        <div
+          className="absolute inset-0 opacity-[0.07]"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 20% 30%, white 1px, transparent 1px)",
+            backgroundSize: "22px 22px",
+          }}
+        />
         <div className="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-white/10 blur-3xl" />
         <div className="absolute -bottom-32 -right-16 w-80 h-80 rounded-full bg-violet-400/20 blur-3xl" />
         <div className="container relative mx-auto px-4 py-20 md:py-24 text-center">
@@ -78,8 +97,9 @@ export default function AboutPage() {
             </span>
           </h1>
           <p className="max-w-2xl mx-auto text-violet-50/90 text-base md:text-lg leading-9 mb-8">
-            از سال ۱۳۹۶ در کنار شما بوده‌ایم؛ با تیمی متخصص که فقط گوشی نمی‌فروشد، بلکه مشاور انتخاب درست شماست.
-            امضای الکترونیکی ما، تعهد به اصالت، کیفیت و صداقت در قیمت است.
+            از سال ۱۳۹۶ در کنار شما بوده‌ایم؛ با تیمی متخصص که فقط گوشی
+            نمی‌فروشد، بلکه مشاور انتخاب درست شماست. امضای الکترونیکی ما، تعهد
+            به اصالت، کیفیت و صداقت در قیمت است.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-3">
             <Link
@@ -101,7 +121,9 @@ export default function AboutPage() {
           <div className="container mx-auto px-4 py-8 grid grid-cols-2 md:grid-cols-4 gap-6">
             {stats.map((s) => (
               <div key={s.label} className="text-center">
-                <p className="text-3xl md:text-4xl font-black text-white">{s.value}</p>
+                <p className="text-3xl md:text-4xl font-black text-white">
+                  {s.value}
+                </p>
                 <p className="mt-1 text-sm text-violet-100/80">{s.label}</p>
               </div>
             ))}
@@ -113,7 +135,9 @@ export default function AboutPage() {
       <section className="py-16 md:py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="font-black text-3xl md:text-4xl text-slate-900 mb-3">چرا موبایل‌سنتر؟</h2>
+            <h2 className="font-black text-3xl md:text-4xl text-slate-900 mb-3">
+              چرا موبایل‌سنتر؟
+            </h2>
             <p className="text-slate-500 max-w-xl mx-auto leading-8">
               ما به تفاوت میان یک خرید معمولی و یک خرید هوشمندانه اعتقاد داریم.
             </p>
@@ -127,7 +151,9 @@ export default function AboutPage() {
                 <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/10 to-violet-500/10 flex items-center justify-center mb-5 group-hover:from-primary group-hover:to-violet-600 group-hover:text-white transition-all duration-300">
                   <v.icon className="w-7 h-7 text-primary group-hover:text-white" />
                 </div>
-                <h3 className="font-black text-lg text-slate-900 mb-2">{v.title}</h3>
+                <h3 className="font-black text-lg text-slate-900 mb-2">
+                  {v.title}
+                </h3>
                 <p className="text-sm text-slate-500 leading-7">{v.desc}</p>
               </div>
             ))}
@@ -139,7 +165,9 @@ export default function AboutPage() {
       <section className="bg-white py-16 md:py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="font-black text-3xl md:text-4xl text-slate-900 mb-3">مسیر رشد ما</h2>
+            <h2 className="font-black text-3xl md:text-4xl text-slate-900 mb-3">
+              مسیر رشد ما
+            </h2>
             <p className="text-slate-500 max-w-xl mx-auto leading-8">
               هر قدم، با هدف نزدیک‌تر شدن به شما برداشته شده است.
             </p>
@@ -153,7 +181,9 @@ export default function AboutPage() {
                     {t.year}
                   </span>
                   <div className="rounded-3xl border border-slate-100 bg-slate-50/60 p-6 pr-5 transition-all hover:border-primary/30 hover:bg-white hover:shadow-lg hover:shadow-primary/10">
-                    <h3 className="font-black text-xl text-slate-900 mb-1.5">{t.title}</h3>
+                    <h3 className="font-black text-xl text-slate-900 mb-1.5">
+                      {t.title}
+                    </h3>
                     <p className="text-slate-500 leading-8">{t.desc}</p>
                   </div>
                 </div>
@@ -167,17 +197,27 @@ export default function AboutPage() {
       <section className="py-16 md:py-20">
         <div className="container mx-auto px-4">
           <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-bl from-primary via-primary to-violet-700 p-10 md:p-16 text-center text-white shadow-2xl shadow-primary/25">
-            <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: "radial-gradient(circle at 20% 30%, white 1px, transparent 1px)", backgroundSize: "20px 20px" }} />
+            <div
+              className="absolute opacity-[0.06]"
+              style={{
+                backgroundImage:
+                  "radial-gradient(circle at 20% 30%, white 1px, transparent 1px)",
+                backgroundSize: "20px 20px",
+              }}
+            />
             <Heart className="w-12 h-12 mx-auto mb-5 text-violet-200" />
-            <h2 className="font-black text-3xl md:text-4xl mb-4">می‌خواهید با ما خرید کنید؟</h2>
+            <h2 className="font-black text-3xl md:text-4xl mb-4">
+              می‌خواهید با ما خرید کنید؟
+            </h2>
             <p className="max-w-xl mx-auto text-violet-100/90 mb-8 leading-8">
-              همین حالا به جمع مشتریان راضی موبایل‌سنتر بپیوندید و تجربه‌ای متفاوت از خرید آنلاین را تجربه کنید.
+              همین حالا به جمع مشتریان راضی موبایل‌سنتر بپیوندید و تجربه‌ای
+              متفاوت از خرید آنلاین را تجربه کنید.
             </p>
             <Link
               href="/products"
               className="inline-flex items-center gap-2 px-10 py-4 rounded-2xl bg-white text-primary font-black shadow-xl hover:bg-violet-50 hover:-translate-y-0.5 transition-all text-lg"
             >
-              <Smartphone className="w-5 h-5" />
+              <LaptopMinimal className="w-5 h-5" />
               شروع خرید
             </Link>
           </div>

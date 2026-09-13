@@ -19,6 +19,8 @@ import {
   BadgePercent,
   ChevronLeft,
   ShieldCheck,
+  ChevronRight,
+  XIcon,
 } from "lucide-react";
 
 const CATEGORIES = [
@@ -40,8 +42,12 @@ export function MobileMenu({ open, onOpenChange, cartCount }: MobileMenuProps) {
 
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
-      <SheetContent side="right" className="w-[86%] max-w-sm p-0 gap-0 overflow-y-auto" showCloseButton={false}>
-        <div className="bg-gradient-to-br from-primary via-primary to-violet-600 text-primary-foreground px-5 pt-6 pb-7 relative overflow-hidden">
+      <SheetContent
+        side="right"
+        className="w-[86%] max-w-sm p-0 gap-0 overflow-y-auto"
+        showCloseButton={false}
+      >
+        <div className="bg-linear-to-br min-h-max from-primary via-primary to-violet-600 text-primary-foreground px-5 pt-6 pb-7 relative overflow-hidden">
           <div className="absolute -top-10 -left-10 w-40 h-40 rounded-full bg-white/10 blur-2xl" />
           <div className="absolute bottom-0 right-10 w-24 h-24 rounded-full bg-white/10 blur-xl" />
           <div className="flex items-center justify-between relative">
@@ -56,7 +62,7 @@ export function MobileMenu({ open, onOpenChange, cartCount }: MobileMenuProps) {
               className="w-9 h-9 rounded-xl bg-white/15 hover:bg-white/25 transition-colors flex items-center justify-center"
               aria-label="بستن منو"
             >
-              <ChevronLeft className="w-5 h-5" />
+              <XIcon className="w-5 h-5" />
             </button>
           </div>
 
@@ -65,14 +71,20 @@ export function MobileMenu({ open, onOpenChange, cartCount }: MobileMenuProps) {
               <Avatar className="w-12 h-12 border-2 border-white/40">
                 <AvatarImage src={session.user.image ?? ""} />
                 <AvatarFallback className="bg-white/20 text-primary-foreground font-bold">
-                  {(session.user.name?.[0] ?? session.user.email?.[0] ?? "ع").toUpperCase()}
+                  {(
+                    session.user.name?.[0] ??
+                    session.user.email?.[0] ??
+                    "ع"
+                  ).toUpperCase()}
                 </AvatarFallback>
               </Avatar>
               <div className="min-w-0">
                 <p className="font-bold text-primary-foreground truncate">
                   {session.user.name || "کاربر موبایل‌سنتر"}
                 </p>
-                <p className="text-[11px] text-primary-foreground/70 truncate">{session.user.email}</p>
+                <p className="text-[11px] text-primary-foreground/70 truncate">
+                  {session.user.email}
+                </p>
               </div>
               <Link
                 href="/dashboard"
@@ -104,7 +116,9 @@ export function MobileMenu({ open, onOpenChange, cartCount }: MobileMenuProps) {
         </div>
 
         <div className="py-3 stagger">
-          <p className="px-5 pt-2 pb-1 text-[11px] font-bold text-muted-foreground">دسترسی سریع</p>
+          <p className="px-5 pt-2 pb-1 text-[11px] font-bold text-muted-foreground">
+            دسترسی سریع
+          </p>
           <Link
             href="/"
             onClick={close}
@@ -126,7 +140,9 @@ export function MobileMenu({ open, onOpenChange, cartCount }: MobileMenuProps) {
             فروشگاه
           </Link>
 
-          <p className="px-5 pt-3 pb-1 text-[11px] font-bold text-muted-foreground">دسته‌بندی‌ها</p>
+          <p className="px-5 pt-3 pb-1 text-[11px] font-bold text-muted-foreground">
+            دسته‌بندی‌ها
+          </p>
           {CATEGORIES.map((cat) => (
             <Link
               key={cat.slug}
@@ -152,16 +168,22 @@ export function MobileMenu({ open, onOpenChange, cartCount }: MobileMenuProps) {
               <BadgePercent className="w-5 h-5" />
             </span>
             <div>
-              <p className="font-bold text-slate-800 text-sm">پیشنهادهای ویژه</p>
-              <p className="text-[11px] text-muted-foreground">با بهترین تخفیف‌های امروز</p>
+              <p className="font-bold text-slate-800 text-sm">
+                پیشنهادهای ویژه
+              </p>
+              <p className="text-[11px] text-muted-foreground">
+                با بهترین تخفیف‌های امروز
+              </p>
             </div>
             <ChevronLeft className="mr-auto w-4 h-4 text-muted-foreground" />
           </Link>
         </div>
 
         {status === "authenticated" && (
-          <div className="px-5 py-4 mt-1 stagger">
-            <p className="text-[11px] font-bold text-muted-foreground mb-1">حساب کاربری</p>
+          <div className="px-5 py-4 mt-2 stagger space-y-1.5 border-t border-slate-200">
+            <p className="text-[11px] font-bold text-muted-foreground mb-1">
+              حساب کاربری
+            </p>
             <Link
               href="/dashboard/orders"
               onClick={close}
@@ -208,7 +230,10 @@ export function MobileMenu({ open, onOpenChange, cartCount }: MobileMenuProps) {
 
         <div className="mt-auto px-5 pb-6 flex items-center justify-center gap-1.5 text-[11px] text-muted-foreground">
           <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" />
-          ضمانت اصالت کالا {cartCount > 0 ? ` • ${cartCount.toLocaleString("fa-IR")} کالا در سبد` : ""}
+          ضمانت اصالت کالا{" "}
+          {cartCount > 0
+            ? ` • ${cartCount.toLocaleString("fa-IR")} کالا در سبد`
+            : ""}
         </div>
       </SheetContent>
     </Sheet>

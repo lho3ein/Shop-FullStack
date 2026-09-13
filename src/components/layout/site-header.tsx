@@ -19,7 +19,6 @@ import { Badge } from "@/components/ui/badge";
 import { MobileMenu } from "@/components/layout/mobile-menu";
 import {
   Search,
-  ShoppingBag,
   User,
   Smartphone,
   Menu,
@@ -32,6 +31,7 @@ import {
   ChevronDown,
   BadgePercent,
   ScrollText,
+  ShoppingCart,
 } from "lucide-react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -62,7 +62,8 @@ export function SiteHeader() {
   };
 
   const cm = /^\/products/.test(pathname.replace(/\/?page=\d+/, ""));
-  const isCategoryActive = (slug: string) => cm && pathname.includes(`category=${slug}`);
+  const isCategoryActive = (slug: string) =>
+    cm && pathname.includes(`category=${slug}`);
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-lg border-b shadow-sm">
@@ -98,8 +99,12 @@ export function SiteHeader() {
               <Smartphone className="w-5 h-5 text-white" />
             </div>
             <div className="hidden sm:block">
-              <p className="font-black text-lg leading-tight text-primary">موبایل‌سنتر</p>
-              <p className="text-[10px] text-muted-foreground leading-tight">Mobile Center</p>
+              <p className="font-black text-lg leading-tight text-primary">
+                موبایل‌سنتر
+              </p>
+              <p className="text-[10px] text-muted-foreground leading-tight">
+                Mobile Center
+              </p>
             </div>
           </Link>
 
@@ -119,7 +124,11 @@ export function SiteHeader() {
               onClick={openCart}
               aria-label="سبد خرید"
             >
-              <ShoppingBag className="w-5.5 h-5.5" />
+              <ShoppingCart
+                size={32}
+                className="size-5 text-gray-700"
+                strokeWidth={1.75}
+              />
               {mounted && count > 0 && (
                 <Badge
                   key={count}
@@ -134,11 +143,18 @@ export function SiteHeader() {
             {status === "authenticated" ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="h-11 px-2 rounded-2xl hover:bg-slate-100 transition-all">
+                  <Button
+                    variant="ghost"
+                    className="h-11 px-2 rounded-2xl hover:bg-slate-100 transition-all"
+                  >
                     <Avatar className="h-9 w-9 border-2 border-primary/25 transition-transform group-hover:scale-105">
                       <AvatarImage src={session.user.image ?? ""} />
                       <AvatarFallback className="bg-gradient-to-br from-primary/15 to-violet-500/15 text-primary">
-                        {(session.user.name?.[0] ?? session.user.email?.[0] ?? "ع").toUpperCase()}
+                        {(
+                          session.user.name?.[0] ??
+                          session.user.email?.[0] ??
+                          "ع"
+                        ).toUpperCase()}
                       </AvatarFallback>
                     </Avatar>
                     <ChevronDown className="w-3.5 h-3.5 text-muted-foreground hidden sm:block" />
@@ -149,58 +165,84 @@ export function SiteHeader() {
                     <Avatar className="w-11 h-11 border-2 border-white shadow-sm">
                       <AvatarImage src={session.user.image ?? ""} />
                       <AvatarFallback className="bg-gradient-to-br from-primary to-violet-600 text-white font-bold">
-                        {(session.user.name?.[0] ?? session.user.email?.[0] ?? "ع").toUpperCase()}
+                        {(
+                          session.user.name?.[0] ??
+                          session.user.email?.[0] ??
+                          "ع"
+                        ).toUpperCase()}
                       </AvatarFallback>
                     </Avatar>
                     <div className="min-w-0">
                       <p className="font-bold text-slate-900 text-sm truncate">
                         {session.user.name || "کاربر موبایل‌سنتر"}
                       </p>
-                      <p className="text-[11px] text-muted-foreground truncate">{session.user.email}</p>
+                      <p className="text-[11px] text-muted-foreground truncate">
+                        {session.user.email}
+                      </p>
                     </div>
                   </div>
 
                   <DropdownMenuItem asChild>
-                    <Link href="/dashboard" className="cursor-pointer rounded-xl py-2.5">
+                    <Link
+                      href="/dashboard"
+                      className="cursor-pointer rounded-xl py-2.5"
+                    >
                       <span className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
                         <LayoutDashboard className="h-4 w-4" />
                       </span>
                       <span>
                         <span className="block font-medium">پنل کاربری</span>
-                        <span className="block text-[10px] text-muted-foreground">مدیریت حساب شما</span>
+                        <span className="block text-[10px] text-muted-foreground">
+                          مدیریت حساب شما
+                        </span>
                       </span>
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
-                    <Link href="/dashboard/orders" className="cursor-pointer rounded-xl py-2.5">
+                    <Link
+                      href="/dashboard/orders"
+                      className="cursor-pointer rounded-xl py-2.5"
+                    >
                       <span className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center">
                         <Package className="h-4 w-4" />
                       </span>
                       <span>
                         <span className="block font-medium">سفارش‌های من</span>
-                        <span className="block text-[10px] text-muted-foreground">پیگیری سفارش‌ها</span>
+                        <span className="block text-[10px] text-muted-foreground">
+                          پیگیری سفارش‌ها
+                        </span>
                       </span>
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
-                    <Link href="/dashboard/wishlist" className="cursor-pointer rounded-xl py-2.5">
+                    <Link
+                      href="/dashboard/wishlist"
+                      className="cursor-pointer rounded-xl py-2.5"
+                    >
                       <span className="w-8 h-8 rounded-lg bg-rose-50 text-rose-500 flex items-center justify-center">
                         <Heart className="h-4 w-4" />
                       </span>
                       <span>
                         <span className="block font-medium">علاقه‌مندی‌ها</span>
-                        <span className="block text-[10px] text-muted-foreground">لیست نشان‌شده‌ها</span>
+                        <span className="block text-[10px] text-muted-foreground">
+                          لیست نشان‌شده‌ها
+                        </span>
                       </span>
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
-                    <Link href="/dashboard/addresses" className="cursor-pointer rounded-xl py-2.5">
+                    <Link
+                      href="/dashboard/addresses"
+                      className="cursor-pointer rounded-xl py-2.5"
+                    >
                       <span className="w-8 h-8 rounded-lg bg-sky-50 text-sky-600 flex items-center justify-center">
                         <MapPin className="h-4 w-4" />
                       </span>
                       <span>
                         <span className="block font-medium">آدرس‌ها</span>
-                        <span className="block text-[10px] text-muted-foreground">مدیریت آدرس‌ها</span>
+                        <span className="block text-[10px] text-muted-foreground">
+                          مدیریت آدرس‌ها
+                        </span>
                       </span>
                     </Link>
                   </DropdownMenuItem>
@@ -209,7 +251,10 @@ export function SiteHeader() {
                     <>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem asChild>
-                        <Link href="/admin" className="cursor-pointer rounded-xl py-2.5 font-medium text-primary">
+                        <Link
+                          href="/admin"
+                          className="cursor-pointer rounded-xl py-2.5 font-medium text-primary"
+                        >
                           <span className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
                             <ScrollText className="h-4 w-4" />
                           </span>
@@ -232,7 +277,10 @@ export function SiteHeader() {
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
-              <Button asChild className="h-11 px-4 rounded-2xl shadow-md shadow-primary/20 hover:shadow-lg hover:shadow-primary/25 hover:translate-y-[-1px] transition-all">
+              <Button
+                asChild
+                className="h-11 px-4 rounded-2xl shadow-md shadow-primary/20 hover:shadow-lg hover:shadow-primary/25 hover:translate-y-[-1px] transition-all"
+              >
                 <Link href="/login">
                   <User className="ml-2 w-4.5 h-4.5" />
                   <span className="hidden sm:inline">ورود / ثبت‌نام</span>
@@ -295,7 +343,11 @@ export function SiteHeader() {
       </nav>
 
       {/* Mobile menu drawer */}
-      <MobileMenu open={mobileMenuOpen} onOpenChange={setMobileMenuOpen} cartCount={count} />
+      <MobileMenu
+        open={mobileMenuOpen}
+        onOpenChange={setMobileMenuOpen}
+        cartCount={count}
+      />
     </header>
   );
 }
