@@ -17,7 +17,7 @@ export async function POST(request: Request) {
     if (!parsed.success) {
       return NextResponse.json(
         { error: parsed.error.issues[0].message },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -27,7 +27,7 @@ export async function POST(request: Request) {
     if (existing) {
       return NextResponse.json(
         { error: "این ایمیل قبلاً ثبت شده است" },
-        { status: 409 }
+        { status: 409 },
       );
     }
 
@@ -45,7 +45,7 @@ export async function POST(request: Request) {
   } catch {
     return NextResponse.json(
       { error: "خطایی رخ داد. لطفاً دوباره تلاش کنید" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

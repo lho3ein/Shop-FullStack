@@ -29,18 +29,23 @@ import {
   MapPin,
   ShieldCheck,
   ChevronDown,
-  BadgePercent,
   ScrollText,
   ShoppingCart,
+  LayoutGrid,
+  Store,
+  Info,
+  PhoneCall,
+  Flame,
+  Headphones,
 } from "lucide-react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useMounted } from "@/lib/hooks/use-mounted";
 
 const categories = [
-  { name: "گوشی موبایل", slug: "phones" },
-  { name: "تبلت", slug: "tablets" },
-  { name: "لوازم جانبی", slug: "accessories" },
+  { name: "گوشی موبایل", slug: "phones", icon: Smartphone },
+  { name: "تبلت", slug: "tablets", icon: Store },
+  { name: "لوازم جانبی", slug: "accessories", icon: Headphones },
 ];
 
 export function SiteHeader() {
@@ -303,18 +308,21 @@ export function SiteHeader() {
       </div>
 
       {/* Categories nav */}
-      <nav className="hidden lg:block border-t border-slate-100 bg-slate-50/60">
+      <nav className="hidden lg:block border-t border-slate-100 bg-gradient-to-b from-slate-50/80 via-slate-50/40 to-transparent">
         <div className="container mx-auto px-4">
-          <ul className="flex items-center gap-1.5 py-2">
+          <ul className="flex items-center gap-1 py-2">
             <li>
               <Link
                 href="/products"
-                className={`flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all whitespace-nowrap ${
+                className={`flex items-center gap-2 px-4 py-2.5 text-sm font-bold rounded-xl transition-all whitespace-nowrap border ${
                   cm
-                    ? "bg-primary text-primary-foreground shadow-md shadow-primary/20"
-                    : "text-slate-600 hover:bg-white hover:shadow-sm hover:text-primary"
+                    ? "bg-primary text-white border-primary shadow-md shadow-primary/25"
+                    : "border-transparent text-slate-600 hover:bg-white hover:border-slate-100 hover:shadow-sm hover:text-primary"
                 }`}
               >
+                <LayoutGrid
+                  className={`w-4 h-4 ${cm ? "text-white" : "text-primary"}`}
+                />
                 همه محصولات
               </Link>
             </li>
@@ -322,21 +330,47 @@ export function SiteHeader() {
               <li key={cat.slug}>
                 <Link
                   href={`/products?category=${cat.slug}`}
-                  className={`block px-4 py-2 text-sm rounded-xl transition-all whitespace-nowrap ${
+                  className={`group flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl transition-all whitespace-nowrap border ${
                     isCategoryActive(cat.slug)
-                      ? "bg-primary text-primary-foreground shadow-md shadow-primary/20"
-                      : "text-slate-600 hover:bg-white hover:shadow-sm hover:text-primary"
+                      ? "bg-primary text-white border-primary shadow-md shadow-primary/25"
+                      : "border-transparent text-slate-600 hover:bg-white hover:border-slate-100 hover:shadow-sm hover:text-primary"
                   }`}
                 >
+                  <cat.icon
+                    className={`w-4 h-4 ${
+                      isCategoryActive(cat.slug)
+                        ? "text-white"
+                        : "text-slate-400 group-hover:text-primary"
+                    }`}
+                  />
                   {cat.name}
                 </Link>
               </li>
             ))}
-            <li className="mr-auto hidden lg:flex items-center">
-              <span className="flex items-center gap-1.5 bg-gradient-to-l from-danger to-orange-500 text-white px-4 py-2 rounded-xl text-xs font-bold shadow-md shadow-danger/20 group hover:animate-wiggle cursor-pointer">
-                <BadgePercent className="w-4 h-4" />
+
+            <li className="mr-auto flex items-center gap-1">
+              <span className="w-px h-6 bg-slate-200 mx-1.5" />
+              <Link
+                href="/about"
+                className="flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-slate-500 hover:text-primary transition-colors"
+              >
+                <Info className="w-4 h-4" />
+                درباره ما
+              </Link>
+              <Link
+                href="/contact"
+                className="flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-slate-500 hover:text-primary transition-colors"
+              >
+                <PhoneCall className="w-4 h-4" />
+                تماس با ما
+              </Link>
+              <Link
+                href="/products?sort=featured"
+                className="flex items-center gap-1.5 bg-gradient-to-l from-danger to-orange-500 text-white px-4 py-2.5 rounded-xl text-xs font-bold shadow-md shadow-danger/20 hover:shadow-lg hover:shadow-danger/30 hover:animate-wiggle transition-all"
+              >
+                <Flame className="w-4 h-4" />
                 تخفیف‌های ویژه
-              </span>
+              </Link>
             </li>
           </ul>
         </div>

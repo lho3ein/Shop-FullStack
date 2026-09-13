@@ -21,6 +21,8 @@ import {
   ShieldCheck,
   ChevronRight,
   XIcon,
+  Info,
+  PhoneCall,
 } from "lucide-react";
 
 const CATEGORIES = [
@@ -139,6 +141,29 @@ export function MobileMenu({ open, onOpenChange, cartCount }: MobileMenuProps) {
             </span>
             فروشگاه
           </Link>
+
+          <div className="grid grid-cols-2 gap-1 px-5 mt-1">
+            <Link
+              href="/about"
+              onClick={close}
+              className="flex items-center gap-2.5 px-3 py-2.5 text-sm text-slate-700 hover:bg-primary/5 hover:text-primary transition-colors rounded-xl"
+            >
+              <span className="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-500 flex items-center justify-center">
+                <Info className="w-4 h-4" />
+              </span>
+              درباره ما
+            </Link>
+            <Link
+              href="/contact"
+              onClick={close}
+              className="flex items-center gap-2.5 px-3 py-2.5 text-sm text-slate-700 hover:bg-primary/5 hover:text-primary transition-colors rounded-xl"
+            >
+              <span className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center">
+                <PhoneCall className="w-4 h-4" />
+              </span>
+              تماس با ما
+            </Link>
+          </div>
 
           <p className="px-5 pt-3 pb-1 text-[11px] font-bold text-muted-foreground">
             دسته‌بندی‌ها

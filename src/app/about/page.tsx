@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
-  Smartphone,
   ShieldCheck,
   Headset,
   BadgeCheck,
@@ -74,7 +73,7 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-[#f5f7fa]">
       {/* Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-bl from-primary via-primary to-violet-700 text-white">
+      <section className="relative overflow-hidden bg-linear-to-bl from-primary via-primary to-violet-700 text-white">
         <div
           className="absolute inset-0 opacity-[0.07]"
           style={{
@@ -117,7 +116,7 @@ export default function AboutPage() {
           </div>
         </div>
         {/* stats */}
-        <div className="border-t border-white/10 bg-white/[0.05] backdrop-blur">
+        <div className="border-t border-white/10 bg-white/5 backdrop-blur">
           <div className="container mx-auto px-4 py-8 grid grid-cols-2 md:grid-cols-4 gap-6">
             {stats.map((s) => (
               <div key={s.label} className="text-center">
@@ -148,7 +147,7 @@ export default function AboutPage() {
                 key={v.title}
                 className="group bg-white rounded-3xl border border-slate-100 p-7 shadow-sm hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1.5 hover:border-primary/20 transition-all duration-300"
               >
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/10 to-violet-500/10 flex items-center justify-center mb-5 group-hover:from-primary group-hover:to-violet-600 group-hover:text-white transition-all duration-300">
+                <div className="w-14 h-14 rounded-2xl bg-linear-to-br from-primary/10 to-violet-500/10 flex items-center justify-center mb-5 group-hover:from-primary group-hover:to-violet-600 group-hover:text-white transition-all duration-300">
                   <v.icon className="w-7 h-7 text-primary group-hover:text-white" />
                 </div>
                 <h3 className="font-black text-lg text-slate-900 mb-2">
@@ -173,11 +172,11 @@ export default function AboutPage() {
             </p>
           </div>
           <div className="relative">
-            <div className="absolute right-[27px] top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-violet-400 to-slate-200" />
+            <div className="absolute right-6.75 top-0 bottom-0 w-0.5 bg-linear-to-b from-primary via-violet-400 to-slate-200" />
             <div className="space-y-10">
               {timeline.map((t) => (
-                <div key={t.year} className="relative pr-[68px]">
-                  <span className="absolute right-0 top-1 w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-violet-600 text-white flex items-center justify-center text-sm font-black shadow-lg shadow-primary/25">
+                <div key={t.year} className="relative pr-17">
+                  <span className="absolute right-0 top-1 w-14 h-14 rounded-2xl bg-linear-to-br from-primary to-violet-600 text-white flex items-center justify-center text-sm font-black shadow-lg shadow-primary/25">
                     {t.year}
                   </span>
                   <div className="rounded-3xl border border-slate-100 bg-slate-50/60 p-6 pr-5 transition-all hover:border-primary/30 hover:bg-white hover:shadow-lg hover:shadow-primary/10">
@@ -196,7 +195,7 @@ export default function AboutPage() {
       {/* CTA */}
       <section className="py-16 md:py-20">
         <div className="container mx-auto px-4">
-          <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-bl from-primary via-primary to-violet-700 p-10 md:p-16 text-center text-white shadow-2xl shadow-primary/25">
+          <div className="relative overflow-hidden rounded-[2.5rem] bg-linear-to-bl from-primary via-primary to-violet-700 p-10 md:p-16 text-center text-white shadow-2xl shadow-primary/25">
             <div
               className="absolute opacity-[0.06]"
               style={{

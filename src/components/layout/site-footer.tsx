@@ -67,16 +67,26 @@ export function SiteFooter() {
             <p className="font-black text-lg">موبایل‌سنتر</p>
           </div>
           <p className="text-sm text-blue-200/70 leading-relaxed mb-4">
-            فروشگاه اینترنتی موبایل‌سنتر، مرجع تخصصی خرید گوشی موبایل، تبلت و لوازم جانبی با بهترین قیمت و ضمانت اصالت کالا.
+            فروشگاه اینترنتی موبایل‌سنتر، مرجع تخصصی خرید گوشی موبایل، تبلت و
+            لوازم جانبی با بهترین قیمت و ضمانت اصالت کالا.
           </p>
           <div className="flex items-center gap-3">
-            <a href="#" className="w-9 h-9 bg-white/10 rounded-lg flex items-center justify-center hover:bg-blue-500 transition-colors">
+            <a
+              href="#"
+              className="w-9 h-9 bg-white/10 rounded-lg flex items-center justify-center hover:bg-blue-500 transition-colors"
+            >
               <Camera className="w-4 h-4" />
             </a>
-            <a href="#" className="w-9 h-9 bg-white/10 rounded-lg flex items-center justify-center hover:bg-blue-500 transition-colors">
+            <a
+              href="#"
+              className="w-9 h-9 bg-white/10 rounded-lg flex items-center justify-center hover:bg-blue-500 transition-colors"
+            >
               <Send className="w-4 h-4" />
             </a>
-            <a href="#" className="w-9 h-9 bg-white/10 rounded-lg flex items-center justify-center hover:bg-blue-500 transition-colors">
+            <a
+              href="#"
+              className="w-9 h-9 bg-white/10 rounded-lg flex items-center justify-center hover:bg-blue-500 transition-colors"
+            >
               <Star className="w-4 h-4" />
             </a>
           </div>
@@ -88,12 +98,54 @@ export function SiteFooter() {
             دسته‌بندی‌ها
           </h4>
           <ul className="space-y-2.5 text-sm text-blue-200/70">
-            <li><Link href="/products?category=phones" className="hover:text-white transition-colors">گوشی موبایل</Link></li>
-            <li><Link href="/products?category=tablets" className="hover:text-white transition-colors">تبلت</Link></li>
-            <li><Link href="/products?category=accessories" className="hover:text-white transition-colors">لوازم جانبی</Link></li>
-            <li><Link href="/products?brand=apple" className="hover:text-white transition-colors">آیفون</Link></li>
-            <li><Link href="/products?brand=samsung" className="hover:text-white transition-colors">سامسونگ</Link></li>
-            <li><Link href="/products?brand=xiaomi" className="hover:text-white transition-colors">شیائومی</Link></li>
+            <li>
+              <Link
+                href="/products?category=phones"
+                className="hover:text-white transition-colors"
+              >
+                گوشی موبایل
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/products?category=tablets"
+                className="hover:text-white transition-colors"
+              >
+                تبلت
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/products?category=accessories"
+                className="hover:text-white transition-colors"
+              >
+                لوازم جانبی
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/products?brand=apple"
+                className="hover:text-white transition-colors"
+              >
+                آیفون
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/products?brand=samsung"
+                className="hover:text-white transition-colors"
+              >
+                سامسونگ
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/products?brand=xiaomi"
+                className="hover:text-white transition-colors"
+              >
+                شیائومی
+              </Link>
+            </li>
           </ul>
         </div>
 
@@ -103,12 +155,51 @@ export function SiteFooter() {
             خدمات مشتریان
           </h4>
           <ul className="space-y-2.5 text-sm text-blue-200/70">
-            <li><Link href="/about" className="hover:text-white transition-colors">درباره ما</Link></li>
-            <li><Link href="/contact" className="hover:text-white transition-colors">تماس با ما</Link></li>
-            <li><Link href="/faq" className="hover:text-white transition-colors">سوالات متداول</Link></li>
-            <li><Link href="/shipping" className="hover:text-white transition-colors">روش‌های ارسال</Link></li>
-            <li><Link href="/warranty" className="hover:text-white transition-colors">گارانتی و خدمات</Link></li>
-            <li><Link href="/privacy" className="hover:text-white transition-colors">حریم خصوصی</Link></li>
+            <li>
+              <Link
+                href="/about"
+                className="hover:text-white transition-colors"
+              >
+                درباره ما
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/contact"
+                className="hover:text-white transition-colors"
+              >
+                تماس با ما
+              </Link>
+            </li>
+            <li>
+              <Link href="/faq" className="hover:text-white transition-colors">
+                سوالات متداول
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/shipping"
+                className="hover:text-white transition-colors"
+              >
+                روش‌های ارسال
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/warranty"
+                className="hover:text-white transition-colors"
+              >
+                گارانتی و خدمات
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/privacy"
+                className="hover:text-white transition-colors"
+              >
+                حریم خصوصی
+              </Link>
+            </li>
           </ul>
         </div>
 
@@ -136,7 +227,9 @@ export function SiteFooter() {
 
       <div className="border-t border-white/10">
         <div className="container mx-auto px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-blue-200/60">
-          <p>© ۱۴۰۳ موبایل‌سنتر - تمامی حقوق محفوظ است.</p>
+          <p>
+            © ۱۴۰۳ موبایل‌سنتر -ساخته شده توسط lho3ein.ir تمامی حقوق محفوظ است.
+          </p>
           <p className="flex items-center gap-1">
             <ShieldCheck className="w-3.5 h-3.5" />
             نماد اعتماد الکترونیکی به صورت آنلاین

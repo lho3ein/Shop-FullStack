@@ -89,7 +89,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
           </>
         )}
         <ChevronLeft className="w-3.5 h-3.5" />
-        <span className="text-slate-800 font-medium truncate max-w-[200px]">{product.name}</span>
+        <span className="text-slate-800 font-medium truncate max-w-50">{product.name}</span>
       </nav>
 
       {/* Product detail */}

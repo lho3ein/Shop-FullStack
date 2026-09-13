@@ -7,11 +7,7 @@ import { useCartStore } from "@/lib/store/cart-store";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import {
-  formatPrice,
-  getDiscountPercent,
-  toPersianDigits,
-} from "@/lib/format";
+import { formatPrice, getDiscountPercent, toPersianDigits } from "@/lib/format";
 import toast from "react-hot-toast";
 import {
   ShieldCheck,
@@ -20,12 +16,12 @@ import {
   Star,
   Minus,
   Plus,
-  ShoppingBag,
   Heart,
   Check,
   Gauge,
   Monitor,
   Share2,
+  ShoppingCartPlus,
 } from "lucide-react";
 
 interface ProductDetailProps {
@@ -59,7 +55,8 @@ export function ProductDetail({ product }: ProductDetailProps) {
 
   const discount = getDiscountPercent(product.price, product.originalPrice);
   const isOutOfStock = product.stock <= 0;
-  const allImages = product.images.length > 0 ? product.images : [product.image];
+  const allImages =
+    product.images.length > 0 ? product.images : [product.image];
 
   const handleAddToCart = () => {
     if (isOutOfStock) return;
@@ -71,7 +68,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
     <div className="grid lg:grid-cols-[1fr_1.2fr_1fr] gap-8">
       {/* Gallery */}
       <div className="bg-white rounded-2xl border border-slate-100 p-4 lg:p-6 self-start">
-        <div className="relative aspect-square rounded-xl bg-gradient-to-b from-slate-50 to-slate-100 overflow-hidden">
+        <div className="relative aspect-square rounded-xl bg-linear-to-b from-slate-50 to-slate-100 overflow-hidden">
           {discount && (
             <Badge className="absolute top-4 left-4 z-10 bg-danger text-white border-0 text-sm px-3 py-1">
               {toPersianDigits(discount)}٪ تخفیف
@@ -93,10 +90,18 @@ export function ProductDetail({ product }: ProductDetailProps) {
                 key={i}
                 onClick={() => setActiveImage(i)}
                 className={`relative aspect-square rounded-lg overflow-hidden border-2 transition-colors ${
-                  activeImage === i ? "border-primary" : "border-transparent hover:border-slate-300 bg-slate-50"
+                  activeImage === i
+                    ? "border-primary"
+                    : "border-transparent hover:border-slate-300 bg-slate-50"
                 }`}
               >
-                <Image src={img} alt="" fill sizes="80px" className="object-contain p-1.5" />
+                <Image
+                  src={img}
+                  alt=""
+                  fill
+                  sizes="80px"
+                  className="object-contain p-1.5"
+                />
               </button>
             ))}
           </div>
@@ -118,7 +123,9 @@ export function ProductDetail({ product }: ProductDetailProps) {
         </h1>
 
         {product.shortDescription && (
-          <p className="text-sm text-muted-foreground mb-4">{product.shortDescription}</p>
+          <p className="text-sm text-muted-foreground mb-4">
+            {product.shortDescription}
+          </p>
         )}
 
         <div className="flex items-center gap-4 mb-5">
@@ -146,7 +153,10 @@ export function ProductDetail({ product }: ProductDetailProps) {
         {product.colors.length > 0 && (
           <div className="mt-5">
             <p className="text-sm font-medium text-slate-700 mb-2.5">
-              رنگ: <span className="text-primary">{selectedColor || "انتخاب کنید"}</span>
+              رنگ:{" "}
+              <span className="text-primary">
+                {selectedColor || "انتخاب کنید"}
+              </span>
             </p>
             <div className="flex items-center gap-2.5 flex-wrap">
               {product.colors.map((color) => {
@@ -156,12 +166,16 @@ export function ProductDetail({ product }: ProductDetailProps) {
                     key={color}
                     onClick={() => setSelectedColor(color)}
                     className={`w-9 h-9 rounded-full border-2 flex items-center justify-center transition-transform ${
-                      isSelected ? "border-primary scale-110" : "border-slate-200 hover:scale-105"
+                      isSelected
+                        ? "border-primary scale-110"
+                        : "border-slate-200 hover:scale-105"
                     }`}
                     style={{ backgroundColor: color }}
                     title={color}
                   >
-                    {isSelected && <Check className="w-4 h-4 text-white drop-shadow" />}
+                    {isSelected && (
+                      <Check className="w-4 h-4 text-white drop-shadow" />
+                    )}
                   </button>
                 );
               })}
@@ -173,7 +187,10 @@ export function ProductDetail({ product }: ProductDetailProps) {
         {product.storageOptions.length > 0 && (
           <div className="mt-5">
             <p className="text-sm font-medium text-slate-700 mb-2.5">
-              حافظه: <span className="text-primary">{selectedStorage || "انتخاب کنید"}</span>
+              حافظه:{" "}
+              <span className="text-primary">
+                {selectedStorage || "انتخاب کنید"}
+              </span>
             </p>
             <div className="flex items-center gap-3 flex-wrap">
               {product.storageOptions.map((s) => (
@@ -215,7 +232,10 @@ export function ProductDetail({ product }: ProductDetailProps) {
                 {formatPrice(product.price)}
               </p>
               {discount && (
-                <Badge variant="secondary" className="bg-green-50 text-green-700 border-green-200">
+                <Badge
+                  variant="secondary"
+                  className="bg-green-50 text-green-700 border-green-200"
+                >
                   {toPersianDigits(discount)}٪ سود شما
                 </Badge>
               )}
@@ -246,7 +266,9 @@ export function ProductDetail({ product }: ProductDetailProps) {
                   {toPersianDigits(quantity)}
                 </span>
                 <button
-                  onClick={() => setQuantity((q) => Math.min(product.stock, q + 1))}
+                  onClick={() =>
+                    setQuantity((q) => Math.min(product.stock, q + 1))
+                  }
                   className="w-10 h-10 flex items-center justify-center hover:bg-slate-50 text-slate-500"
                   disabled={isOutOfStock}
                 >
@@ -279,7 +301,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
               onClick={handleAddToCart}
               disabled={isOutOfStock}
             >
-              <ShoppingBag className="ml-2 h-5 w-5" />
+              <ShoppingCartPlus className="ml-2 h-5 w-5" />
               {isOutOfStock ? "ناموجود" : "افزودن به سبد خرید"}
             </Button>
             <Button
@@ -291,7 +313,9 @@ export function ProductDetail({ product }: ProductDetailProps) {
                 if (!wished) toast.success("به علاقه‌مندی‌ها اضافه شد");
               }}
             >
-              <Heart className={`ml-2 h-5 w-5 ${wished ? "fill-red-500 text-red-500" : ""}`} />
+              <Heart
+                className={`ml-2 h-5 w-5 ${wished ? "fill-red-500 text-red-500" : ""}`}
+              />
               {wished ? "در لیست علاقه‌مندی‌ها" : "افزودن به علاقه‌مندی‌ها"}
             </Button>
           </div>

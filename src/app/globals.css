@@ -207,6 +207,35 @@
       transform: rotate(8deg);
     }
   }
+
+  @keyframes float-y {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes float-y-r {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(10px);
+    }
+  }
+
+  @keyframes spin-slow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
 }
 
 @layer utilities {
@@ -221,6 +250,15 @@
   }
   .animate-wiggle {
     animation: wiggle 0.4s ease-in-out;
+  }
+  .animate-float {
+    animation: float-y 4s ease-in-out infinite;
+  }
+  .animate-float-reverse {
+    animation: float-y-r 5s ease-in-out infinite;
+  }
+  .animate-spin-slow {
+    animation: spin-slow 18s linear infinite;
   }
   .stagger > * {
     animation: fade-up 0.5s ease-out both;

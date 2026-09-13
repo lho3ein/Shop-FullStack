@@ -19,6 +19,9 @@ import {
   TrendingUp,
   ShoppingBag,
   ArrowLeft,
+  BadgePercent,
+  Sparkles,
+  Store,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -96,16 +99,24 @@ export default async function HomePage() {
   return (
     <div className="min-h-screen">
       {/* ===== HERO ===== */}
-      <section className="relative bg-gradient-to-l from-primary via-[#1e3a8a] to-[#0c1f4d] text-white overflow-hidden">
+      <section className="relative bg-linear-to-l from-primary via-[#1e3a8a] to-[#0c1f4d] text-white overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute -right-20 top-10 w-96 h-96 rounded-full bg-blue-400 blur-3xl" />
           <div className="absolute left-10 bottom-0 w-80 h-80 rounded-full bg-indigo-400 blur-3xl" />
         </div>
+        <div
+          className="absolute inset-0 opacity-[0.06]"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 20% 30%, white 1px, transparent 1px)",
+            backgroundSize: "24px 24px",
+          }}
+        />
         <div className="container mx-auto px-4 py-14 lg:py-20 relative z-10">
           <div className="grid lg:grid-cols-2 gap-10 items-center">
             <div className="animate-fade-in">
               <Badge className="bg-white/15 text-white border-white/20 mb-5 px-4 py-1.5">
-                <Zap className="w-3.5 h-3.5 ml-1" />
+                <Sparkles className="w-3.5 h-3.5 ml-1" />
                 تا ۳۰٪ تخفیف ویژه
               </Badge>
               <h1 className="text-3xl lg:text-5xl font-black leading-tight mb-5">
@@ -122,7 +133,7 @@ export default async function HomePage() {
               <div className="flex items-center flex-wrap gap-3">
                 <Button
                   size="lg"
-                  className="bg-white text-primary hover:bg-blue-50 h-13 px-8 text-base"
+                  className="bg-white text-primary hover:bg-blue-50 h-13 px-8 text-base shadow-xl shadow-blue-950/20"
                   asChild
                 >
                   <Link href="/products">
@@ -159,26 +170,60 @@ export default async function HomePage() {
                 </div>
               </div>
             </div>
+
+            {/* Product showcase */}
             <div className="hidden lg:flex justify-center relative">
-              <div className="relative w-[400px] h-[400px]">
+              <div className="relative w-107.5 h-107.5">
+                <div className="absolute inset-8 rounded-full bg-linear-to-br from-blue-400/30 to-violet-500/30 blur-2xl" />
+                <div className="absolute inset-16 rounded-full border-2 border-dashed border-white/10 animate-spin-slow" />
                 <Image
                   src="/products/photo-1601784551446-20c9e07cdbdb.webp"
                   alt="گوشی موبایل"
-                  className="object-contain drop-shadow-[0_25px_40px_rgba(0,0,0,0.4)]"
+                  className="object-contain drop-shadow-[0_25px_40px_rgba(0,0,0,0.45)]"
                   fill
-                  sizes="400px"
+                  sizes="430px"
                   priority
                 />
-                <div className="absolute right-0 top-10 bg-white text-slate-800 rounded-2xl shadow-xl p-4 animate-pulse-glow">
-                  <p className="text-xs text-muted-foreground">شگفت‌انگیز</p>
-                  <p className="font-black text-primary text-lg">۱۵٪ تخفیف</p>
+                <div className="absolute right-0 top-12 bg-white/95 backdrop-blur text-slate-800 rounded-2xl shadow-2xl shadow-slate-900/20 p-4 animate-float">
+                  <div className="flex items-center gap-2.5">
+                    <span className="w-9 h-9 rounded-xl bg-danger/10 text-danger flex items-center justify-center shrink-0">
+                      <BadgePercent className="w-5 h-5" />
+                    </span>
+                    <div>
+                      <p className="text-xs text-muted-foreground">
+                        شگفت‌انگیز
+                      </p>
+                      <p className="font-black text-primary text-lg leading-none mt-0.5">
+                        ۱۵٪ تخفیف
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <div className="absolute left-0 bottom-16 bg-white text-slate-800 rounded-2xl shadow-xl p-4">
-                  <p className="text-xs text-muted-foreground mb-1">ارسال</p>
-                  <p className="font-bold text-sm flex items-center gap-1">
-                    <Truck className="w-4 h-4 text-primary" />
-                    رایگان
-                  </p>
+                <div className="absolute left-0 bottom-20 bg-white/95 backdrop-blur text-slate-800 rounded-2xl shadow-2xl shadow-slate-900/20 p-4 animate-float-reverse">
+                  <div className="flex items-center gap-2.5">
+                    <span className="w-9 h-9 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                      <Truck className="w-5 h-5" />
+                    </span>
+                    <div>
+                      <p className="text-xs text-muted-foreground mb-0.5">
+                        ارسال سریع
+                      </p>
+                      <p className="font-bold text-sm">رایگان به سراسر ایران</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="absolute bottom-4 right-14 bg-white/95 backdrop-blur text-slate-800 rounded-2xl shadow-2xl shadow-slate-900/20 px-4 py-3 flex items-center gap-2.5 animate-float">
+                  <span className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
+                    <ShieldCheck className="w-4.5 h-4.5" />
+                  </span>
+                  <div>
+                    <p className="text-sm font-bold leading-none">
+                      ضمانت اصالت
+                    </p>
+                    <p className="text-[10px] text-muted-foreground mt-1">
+                      کالای اورجینال با گارانتی
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -187,8 +232,8 @@ export default async function HomePage() {
       </section>
 
       {/* ===== SERVICES ===== */}
-      <section className="container mx-auto px-4 -mt-0 lg:-mt-8 relative z-20">
-        <div className="bg-white rounded-2xl shadow-lg shadow-slate-200/60 border border-slate-100 lg:scale-110 origin-center px-2">
+      <section className="container mx-auto px-4 -mt-4 lg:-mt-10 relative z-20">
+        <div className="bg-white rounded-2xl shadow-lg shadow-slate-200/60 border border-slate-100 px-2">
           <div className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-x-reverse divide-slate-100">
             {services.map((s, i) => (
               <div
@@ -211,13 +256,16 @@ export default async function HomePage() {
       </section>
 
       {/* ===== CATEGORIES ===== */}
-      <section className="container mx-auto px-4 mt-16 lg:mt-24">
+      <section className="container mx-auto px-4 mt-14 lg:mt-20">
         <div className="flex items-end justify-between mb-6">
           <div>
-            <h2 className="text-2xl font-black text-slate-900">
+            <h2 className="text-2xl font-black text-slate-900 flex items-center gap-2.5">
+              <span className="w-9 h-9 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+                <Smartphone className="w-5 h-5" />
+              </span>
               دسته‌بندی محصولات
             </h2>
-            <p className="text-sm text-muted-foreground mt-1">
+            <p className="text-sm text-muted-foreground mt-2 pr-12">
               بر اساس نیاز خود انتخاب کنید
             </p>
           </div>
@@ -234,10 +282,10 @@ export default async function HomePage() {
             <Link
               key={cat.slug}
               href={`/products?category=${cat.slug}`}
-              className="group flex items-center gap-4 bg-white rounded-2xl border border-slate-100 p-6 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all"
+              className="group flex items-center gap-4 bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:border-primary/40 hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-1 transition-all duration-300"
             >
               <div
-                className={`w-16 h-16 rounded-2xl flex items-center justify-center ${cat.color} group-hover:scale-110 transition-transform`}
+                className={`w-16 h-16 rounded-2xl flex items-center justify-center ${cat.color} group-hover:scale-110 transition-transform duration-300`}
               >
                 <cat.icon className="w-8 h-8" />
               </div>
@@ -247,7 +295,9 @@ export default async function HomePage() {
                 </p>
                 <p className="text-sm text-muted-foreground">{cat.count}</p>
               </div>
-              <ChevronLeft className="w-5 h-5 text-slate-300 group-hover:text-primary transition-colors" />
+              <span className="w-8 h-8 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-all">
+                <ChevronLeft className="w-4 h-4 text-slate-400 group-hover:text-white transition-colors" />
+              </span>
             </Link>
           ))}
         </div>
@@ -257,8 +307,10 @@ export default async function HomePage() {
       <section className="container mx-auto px-4 mt-16 lg:mt-20">
         <div className="flex items-end justify-between mb-6">
           <div>
-            <h2 className="text-2xl font-black text-slate-900 flex items-center gap-2">
-              <Zap className="w-6 h-6 text-amber-500" />
+            <h2 className="text-2xl font-black text-slate-900 flex items-center gap-2.5">
+              <span className="w-9 h-9 rounded-xl bg-amber-50 text-amber-500 flex items-center justify-center">
+                <Zap className="w-5 h-5" />
+              </span>
               پیشنهادهای ویژه
             </h2>
             <p className="text-sm text-muted-foreground mt-1">
@@ -278,7 +330,7 @@ export default async function HomePage() {
 
       {/* ===== PROMO BANNER ===== */}
       <section className="container mx-auto px-4 mt-16 lg:mt-20">
-        <div className="relative rounded-3xl bg-gradient-to-l from-[#0c1f4d] via-[#1e3a8a] to-primary text-white overflow-hidden">
+        <div className="relative rounded-3xl bg-linear-to-l from-[#0c1f4d] via-[#1e3a8a] to-primary text-white overflow-hidden">
           <div className="absolute inset-0 opacity-20">
             <div className="absolute -left-20 -top-20 w-80 h-80 rounded-full bg-blue-400 blur-3xl" />
             <div className="absolute right-10 bottom-0 w-64 h-64 rounded-full bg-indigo-400 blur-3xl" />
@@ -307,15 +359,30 @@ export default async function HomePage() {
                 </Link>
               </Button>
             </div>
-            <div className="hidden lg:flex justify-center">
-              <div className="relative w-72 h-72">
+            <div className="hidden lg:flex justify-center relative">
+              <div className="relative w-80 h-80">
+                <div className="absolute inset-8 rounded-full bg-blue-400/30 blur-2xl" />
+                <div className="absolute inset-14 rounded-full border-2 border-dashed border-white/15 animate-spin-slow" />
                 <Image
                   src="/products/photo-1511707171634-5f897ff02aa9.webp"
                   alt="آیفون"
                   fill
-                  className="object-contain"
-                  sizes="288px"
+                  className="object-contain drop-shadow-[0_25px_35px_rgba(0,0,0,0.45)]"
+                  sizes="320px"
                 />
+                <div className="absolute -bottom-3 right-6 bg-white text-slate-800 rounded-2xl shadow-xl px-4 py-3 flex items-center gap-2 animate-float">
+                  <span className="w-8 h-8 rounded-lg bg-amber-100 text-amber-600 flex items-center justify-center">
+                    <TrendingUp className="w-4 h-4" />
+                  </span>
+                  <div>
+                    <p className="text-xs text-muted-foreground">
+                      فقط تا پایان هفته
+                    </p>
+                    <p className="font-black text-slate-900 text-sm">
+                      ۳۰٪ تخفیف ویژه
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -324,10 +391,13 @@ export default async function HomePage() {
 
       {/* ===== BRANDS ===== */}
       <section className="container mx-auto px-4 mt-16 lg:mt-20">
-        <h2 className="text-2xl font-black text-slate-900 mb-6">
+        <h2 className="text-2xl font-black text-slate-900 mb-6 flex items-center gap-2.5">
+          <span className="w-9 h-9 rounded-xl bg-indigo-50 text-indigo-500 flex items-center justify-center">
+            <Store className="w-5 h-5" />
+          </span>
           برندهای معتبر
         </h2>
-        <div className="bg-white rounded-2xl border border-slate-100 p-6">
+        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
           <div className="flex flex-wrap items-center justify-center gap-x-14 gap-y-6">
             {brands.map((brand) => (
               <Link
@@ -354,7 +424,10 @@ export default async function HomePage() {
           <div>
             <div className="flex items-end justify-between mb-6">
               <div>
-                <h2 className="text-2xl font-black text-slate-900 flex items-center gap-2">
+                <h2 className="text-2xl font-black text-slate-900 flex items-center gap-2.5">
+                  <span className="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-500 flex items-center justify-center">
+                    <Sparkles className="w-5 h-5" />
+                  </span>
                   جدیدترین محصولات
                   <span className="text-sm font-normal text-muted-foreground mr-1">
                     تازه رسیده‌ها
@@ -374,7 +447,10 @@ export default async function HomePage() {
 
           {/* Best sellers */}
           <aside>
-            <h2 className="text-2xl font-black text-slate-900 mb-6">
+            <h2 className="text-2xl font-black text-slate-900 mb-6 flex items-center gap-2.5">
+              <span className="w-9 h-9 rounded-xl bg-rose-50 text-rose-500 flex items-center justify-center">
+                <TrendingUp className="w-5 h-5" />
+              </span>
               پرفروش‌ترین‌ها
             </h2>
             <div className="space-y-3">
@@ -382,7 +458,7 @@ export default async function HomePage() {
                 <Link
                   key={p.id}
                   href={`/product/${p.slug}`}
-                  className="group flex gap-3 bg-white rounded-xl border border-slate-100 p-3 hover:border-primary/30 hover:shadow-md transition-all"
+                  className="group flex gap-3 bg-white rounded-xl border border-slate-200 p-3 shadow-sm hover:border-primary/40 hover:shadow-md hover:-translate-y-0.5 transition-all"
                 >
                   <div className="relative w-16 h-16 rounded-lg bg-slate-50 overflow-hidden shrink-0">
                     <Image
@@ -409,7 +485,7 @@ export default async function HomePage() {
                 </Link>
               ))}
             </div>
-            <div className="mt-6 bg-gradient-to-br from-primary to-[#1e3a8a] text-white rounded-2xl p-6 overflow-hidden relative">
+            <div className="mt-6 bg-linear-to-br from-primary to-[#1e3a8a] text-white rounded-2xl p-6 overflow-hidden relative">
               <div className="absolute -top-10 -left-10 w-40 h-40 rounded-full bg-white/10" />
               <div className="relative">
                 <Smartphone className="w-8 h-8 mb-3 text-blue-300" />

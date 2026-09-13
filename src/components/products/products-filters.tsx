@@ -4,12 +4,14 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import {
-  Filter,
-  SlidersHorizontal,
-  ArrowDownUp,
-} from "lucide-react";
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { Filter, SlidersHorizontal, ArrowDownUp } from "lucide-react";
 import { useState, useTransition } from "react";
 
 interface Category {
@@ -53,7 +55,8 @@ function SortSegmented({
   return (
     <div className="grid grid-cols-2 gap-1.5">
       {SORTS.map((s) => {
-        const isActive = active === s.value || (!active && s.value === "popular");
+        const isActive =
+          active === s.value || (!active && s.value === "popular");
         return (
           <button
             key={s.value}
@@ -161,7 +164,9 @@ export function ProductsFilters({
 
         {/* Category */}
         <div className="mb-5">
-          <p className="text-sm font-semibold text-slate-700 mb-2.5">دسته‌بندی</p>
+          <p className="text-sm font-semibold text-slate-700 mb-2.5">
+            دسته‌بندی
+          </p>
           <div className="space-y-1.5">
             <button
               onClick={() => handleCategory("")}
@@ -172,7 +177,9 @@ export function ProductsFilters({
               }`}
             >
               همه دسته‌بندی‌ها
-              {!activeCategory && <span className="w-1.5 h-1.5 rounded-full bg-primary" />}
+              {!activeCategory && (
+                <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+              )}
             </button>
             {categories.map((c) => (
               <button
@@ -185,7 +192,9 @@ export function ProductsFilters({
                 }`}
               >
                 {c.name}
-                {activeCategory === c.slug && <span className="w-1.5 h-1.5 rounded-full bg-primary" />}
+                {activeCategory === c.slug && (
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                )}
               </button>
             ))}
           </div>
@@ -206,7 +215,9 @@ export function ProductsFilters({
               }`}
             >
               همه برندها
-              {!activeBrand && <span className="w-1.5 h-1.5 rounded-full bg-primary" />}
+              {!activeBrand && (
+                <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+              )}
             </button>
             {brands.map((b) => (
               <button
@@ -219,7 +230,9 @@ export function ProductsFilters({
                 }`}
               >
                 {b.name}
-                {activeBrand === b.slug && <span className="w-1.5 h-1.5 rounded-full bg-primary" />}
+                {activeBrand === b.slug && (
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                )}
               </button>
             ))}
           </div>
@@ -229,7 +242,9 @@ export function ProductsFilters({
 
         {/* Price range */}
         <div>
-          <p className="text-sm font-semibold text-slate-700 mb-2.5">محدوده قیمت</p>
+          <p className="text-sm font-semibold text-slate-700 mb-2.5">
+            محدوده قیمت
+          </p>
           <div className="flex items-center gap-2 mb-3">
             <Input
               type="number"
@@ -265,14 +280,20 @@ export function ProductsFilters({
             <Button variant="outline" className="flex-1">
               <Filter className="ml-2 h-4 w-4" />
               فیلترها
-              {(activeCategory || activeBrand || minPrice !== undefined || maxPrice !== undefined) && (
+              {(activeCategory ||
+                activeBrand ||
+                minPrice !== undefined ||
+                maxPrice !== undefined) && (
                 <span className="w-4 h-4 bg-primary text-primary-foreground rounded-full text-[10px] flex items-center justify-center mr-1">
                   !
                 </span>
               )}
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="w-[85%] max-w-sm overflow-y-auto">
+          <SheetContent
+            side="right"
+            className="w-[85%] max-w-sm overflow-y-auto"
+          >
             <SheetHeader className="mb-4">
               <SheetTitle className="flex items-center gap-2">
                 <SlidersHorizontal className="w-4 h-4" />
@@ -281,19 +302,25 @@ export function ProductsFilters({
             </SheetHeader>
 
             <div className="mb-5">
-              <p className="text-sm font-semibold text-slate-700 mb-2.5">مرتب‌سازی</p>
+              <p className="text-sm font-semibold text-slate-700 mb-2.5">
+                مرتب‌سازی
+              </p>
               <SortSegmented active={activeSort} onChange={handleSort} />
             </div>
 
             <Separator className="my-4" />
 
             <div className="mb-5">
-              <p className="text-sm font-semibold text-slate-700 mb-2.5">دسته‌بندی</p>
+              <p className="text-sm font-semibold text-slate-700 mb-2.5">
+                دسته‌بندی
+              </p>
               <div className="space-y-1.5">
                 <button
                   onClick={() => handleCategory("")}
                   className={`block w-full text-right text-sm px-3 py-2.5 rounded-xl transition-colors hover:bg-primary/5 ${
-                    !activeCategory ? "bg-primary/10 text-primary font-semibold" : "text-slate-600"
+                    !activeCategory
+                      ? "bg-primary/10 text-primary font-semibold"
+                      : "text-slate-600"
                   }`}
                 >
                   همه دسته‌بندی‌ها
@@ -303,7 +330,9 @@ export function ProductsFilters({
                     key={c.id}
                     onClick={() => handleCategory(c.slug)}
                     className={`block w-full text-right text-sm px-3 py-2.5 rounded-xl transition-colors hover:bg-primary/5 ${
-                      activeCategory === c.slug ? "bg-primary/10 text-primary font-semibold" : "text-slate-600"
+                      activeCategory === c.slug
+                        ? "bg-primary/10 text-primary font-semibold"
+                        : "text-slate-600"
                     }`}
                   >
                     {c.name}
@@ -315,12 +344,16 @@ export function ProductsFilters({
             <Separator className="my-4" />
 
             <div className="mb-5">
-              <p className="text-sm font-semibold text-slate-700 mb-2.5">برند</p>
+              <p className="text-sm font-semibold text-slate-700 mb-2.5">
+                برند
+              </p>
               <div className="space-y-1.5">
                 <button
                   onClick={() => handleBrand("")}
                   className={`block w-full text-right text-sm px-3 py-2.5 rounded-xl transition-colors hover:bg-primary/5 ${
-                    !activeBrand ? "bg-primary/10 text-primary font-semibold" : "text-slate-600"
+                    !activeBrand
+                      ? "bg-primary/10 text-primary font-semibold"
+                      : "text-slate-600"
                   }`}
                 >
                   همه برندها
@@ -330,7 +363,9 @@ export function ProductsFilters({
                     key={b.id}
                     onClick={() => handleBrand(b.slug)}
                     className={`block w-full text-right text-sm px-3 py-2.5 rounded-xl transition-colors hover:bg-primary/5 ${
-                      activeBrand === b.slug ? "bg-primary/10 text-primary font-semibold" : "text-slate-600"
+                      activeBrand === b.slug
+                        ? "bg-primary/10 text-primary font-semibold"
+                        : "text-slate-600"
                     }`}
                   >
                     {b.name}
@@ -342,13 +377,32 @@ export function ProductsFilters({
             <Separator className="my-4" />
 
             <div className="mb-6">
-              <p className="text-sm font-semibold text-slate-700 mb-2.5">محدوده قیمت</p>
+              <p className="text-sm font-semibold text-slate-700 mb-2.5">
+                محدوده قیمت
+              </p>
               <div className="flex items-center gap-2 mb-3">
-                <Input type="number" placeholder="حداقل" value={priceMin} onChange={(e) => setPriceMin(e.target.value)} className="h-9 text-sm" />
+                <Input
+                  type="number"
+                  placeholder="حداقل"
+                  value={priceMin}
+                  onChange={(e) => setPriceMin(e.target.value)}
+                  className="h-9 text-sm"
+                />
                 <span className="text-slate-400 text-sm">تا</span>
-                <Input type="number" placeholder="حداکثر" value={priceMax} onChange={(e) => setPriceMax(e.target.value)} className="h-9 text-sm" />
+                <Input
+                  type="number"
+                  placeholder="حداکثر"
+                  value={priceMax}
+                  onChange={(e) => setPriceMax(e.target.value)}
+                  className="h-9 text-sm"
+                />
               </div>
-              <Button size="sm" className="w-full" onClick={applyPrice} disabled={isPending}>
+              <Button
+                size="sm"
+                className="w-full"
+                onClick={applyPrice}
+                disabled={isPending}
+              >
                 اعمال فیلتر قیمت
               </Button>
             </div>
