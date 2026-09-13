@@ -35,10 +35,10 @@ export function DashboardNav({ userName, userEmail, userImage, isAdmin }: Dashbo
 
   return (
     <aside className="space-y-4">
-      <div className="bg-white rounded-2xl border border-slate-100 p-5 flex items-center gap-3">
-        <Avatar className="w-12 h-12 border-2 border-primary/20">
+      <div className="bg-gradient-to-br from-primary/[0.06] to-violet-500/[0.06] rounded-3xl border border-primary/10 p-5 flex items-center gap-3">
+        <Avatar className="w-12 h-12 border-2 border-primary/25 shadow-sm">
           <AvatarImage src={userImage ?? ""} />
-          <AvatarFallback className="bg-primary/10 text-primary font-bold text-lg">
+          <AvatarFallback className="bg-gradient-to-br from-primary to-violet-600 text-white font-bold text-lg">
             {(userName?.[0] ?? userEmail?.[0] ?? "ع").toUpperCase()}
           </AvatarFallback>
         </Avatar>
@@ -48,7 +48,7 @@ export function DashboardNav({ userName, userEmail, userImage, isAdmin }: Dashbo
         </div>
       </div>
 
-      <nav className="bg-white rounded-2xl border border-slate-100 p-3">
+      <nav className="bg-white rounded-3xl border border-slate-100 p-3 shadow-sm">
         <ul className="space-y-1">
           {NAV_ITEMS.map((item) => {
             const isActive =
@@ -60,14 +60,17 @@ export function DashboardNav({ userName, userEmail, userImage, isAdmin }: Dashbo
                 <Link
                   href={item.href}
                   className={cn(
-                    "flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm transition-colors",
+                    "group flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm transition-all duration-200",
                     isActive
-                      ? "bg-primary text-white font-medium"
-                      : "text-slate-600 hover:bg-slate-50 hover:text-primary"
+                      ? "bg-gradient-to-l from-primary to-violet-600 text-white font-medium shadow-md shadow-primary/20"
+                      : "text-slate-600 hover:bg-primary/5 hover:text-primary hover:translate-x-[-2px]"
                   )}
                 >
-                  <item.icon className="w-4.5 h-4.5" />
+                  <item.icon
+                    className={cn("w-4.5 h-4.5", !isActive && "text-slate-400 group-hover:text-primary transition-colors")}
+                  />
                   {item.label}
+                  {isActive && <span className="mr-auto w-1.5 h-1.5 rounded-full bg-white/70" />}
                 </Link>
               </li>
             );
@@ -81,9 +84,9 @@ export function DashboardNav({ userName, userEmail, userImage, isAdmin }: Dashbo
               <li>
                 <Link
                   href="/admin"
-                  className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm text-primary font-medium hover:bg-primary/5 transition-colors"
+                  className="group flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm text-primary font-medium hover:bg-primary/5 transition-all"
                 >
-                  <ShieldCheck className="w-4.5 h-4.5" />
+                  <ShieldCheck className="w-4.5 h-4.5 group-hover:scale-110 transition-transform" />
                   پنل مدیریت
                 </Link>
               </li>
@@ -94,9 +97,9 @@ export function DashboardNav({ userName, userEmail, userImage, isAdmin }: Dashbo
         <div className="my-3 border-t border-slate-100" />
         <button
           onClick={() => signOut({ callbackUrl: "/" })}
-          className="flex w-full items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm text-red-500 hover:bg-red-50 transition-colors"
+          className="group flex w-full items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm text-red-500 hover:bg-red-50 hover:translate-x-[-2px] transition-all"
         >
-          <LogOut className="w-4.5 h-4.5" />
+          <LogOut className="w-4.5 h-4.5 group-hover:scale-110 transition-transform" />
           خروج از حساب
         </button>
       </nav>

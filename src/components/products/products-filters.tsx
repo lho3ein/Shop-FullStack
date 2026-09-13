@@ -3,8 +3,6 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import {
@@ -44,6 +42,35 @@ const SORTS = [
   { value: "price_desc", label: "گران‌ترین" },
   { value: "views", label: "پربازدیدترین" },
 ];
+
+function SortSegmented({
+  active,
+  onChange,
+}: {
+  active?: string;
+  onChange: (value: string) => void;
+}) {
+  return (
+    <div className="grid grid-cols-2 gap-1.5">
+      {SORTS.map((s) => {
+        const isActive = active === s.value || (!active && s.value === "popular");
+        return (
+          <button
+            key={s.value}
+            onClick={() => onChange(s.value)}
+            className={`text-xs font-medium py-2.5 px-3 rounded-xl border transition-all duration-200 ${
+              isActive
+                ? "bg-primary text-primary-foreground border-primary shadow-md shadow-primary/25 scale-[1.02]"
+                : "bg-white text-slate-600 border-slate-200 hover:border-primary/40 hover:text-primary hover:shadow-sm"
+            }`}
+          >
+            {s.label}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
 
 export function ProductsFilters({
   categories,
@@ -127,16 +154,7 @@ export function ProductsFilters({
             <ArrowDownUp className="w-3.5 h-3.5 text-slate-400" />
             مرتب‌سازی
           </p>
-          <RadioGroup value={activeSort} onValueChange={handleSort} className="gap-2">
-            {SORTS.map((s) => (
-              <div key={s.value} className="flex items-center space-x-2 space-x-reverse">
-                <RadioGroupItem value={s.value} id={`sort-${s.value}`} className="border-slate-300" />
-                <Label htmlFor={`sort-${s.value}`} className="text-sm cursor-pointer">
-                  {s.label}
-                </Label>
-              </div>
-            ))}
-          </RadioGroup>
+          <SortSegmented active={activeSort} onChange={handleSort} />
         </div>
 
         <Separator className="my-4" />
@@ -144,24 +162,30 @@ export function ProductsFilters({
         {/* Category */}
         <div className="mb-5">
           <p className="text-sm font-semibold text-slate-700 mb-2.5">دسته‌بندی</p>
-          <div className="space-y-2.5">
+          <div className="space-y-1.5">
             <button
               onClick={() => handleCategory("")}
-              className={`block w-full text-right text-sm px-3 py-2 rounded-lg transition-colors ${
-                !activeCategory ? "bg-primary/10 text-primary font-medium" : "text-slate-600 hover:bg-slate-50"
+              className={`flex w-full items-center justify-between text-right text-sm px-3 py-2.5 rounded-xl transition-all ${
+                !activeCategory
+                  ? "bg-primary/10 text-primary font-semibold shadow-sm"
+                  : "text-slate-600 hover:bg-slate-50 hover:text-primary"
               }`}
             >
               همه دسته‌بندی‌ها
+              {!activeCategory && <span className="w-1.5 h-1.5 rounded-full bg-primary" />}
             </button>
             {categories.map((c) => (
               <button
                 key={c.id}
                 onClick={() => handleCategory(c.slug)}
-                className={`block w-full text-right text-sm px-3 py-2 rounded-lg transition-colors ${
-                  activeCategory === c.slug ? "bg-primary/10 text-primary font-medium" : "text-slate-600 hover:bg-slate-50"
+                className={`flex w-full items-center justify-between text-right text-sm px-3 py-2.5 rounded-xl transition-all ${
+                  activeCategory === c.slug
+                    ? "bg-primary/10 text-primary font-semibold shadow-sm"
+                    : "text-slate-600 hover:bg-slate-50 hover:text-primary"
                 }`}
               >
                 {c.name}
+                {activeCategory === c.slug && <span className="w-1.5 h-1.5 rounded-full bg-primary" />}
               </button>
             ))}
           </div>
@@ -172,24 +196,30 @@ export function ProductsFilters({
         {/* Brand */}
         <div className="mb-5">
           <p className="text-sm font-semibold text-slate-700 mb-2.5">برند</p>
-          <div className="space-y-2.5">
+          <div className="space-y-1.5">
             <button
               onClick={() => handleBrand("")}
-              className={`block w-full text-right text-sm px-3 py-2 rounded-lg transition-colors ${
-                !activeBrand ? "bg-primary/10 text-primary font-medium" : "text-slate-600 hover:bg-slate-50"
+              className={`flex w-full items-center justify-between text-right text-sm px-3 py-2.5 rounded-xl transition-all ${
+                !activeBrand
+                  ? "bg-primary/10 text-primary font-semibold shadow-sm"
+                  : "text-slate-600 hover:bg-slate-50 hover:text-primary"
               }`}
             >
               همه برندها
+              {!activeBrand && <span className="w-1.5 h-1.5 rounded-full bg-primary" />}
             </button>
             {brands.map((b) => (
               <button
                 key={b.id}
                 onClick={() => handleBrand(b.slug)}
-                className={`block w-full text-right text-sm px-3 py-2 rounded-lg transition-colors ${
-                  activeBrand === b.slug ? "bg-primary/10 text-primary font-medium" : "text-slate-600 hover:bg-slate-50"
+                className={`flex w-full items-center justify-between text-right text-sm px-3 py-2.5 rounded-xl transition-all ${
+                  activeBrand === b.slug
+                    ? "bg-primary/10 text-primary font-semibold shadow-sm"
+                    : "text-slate-600 hover:bg-slate-50 hover:text-primary"
                 }`}
               >
                 {b.name}
+                {activeBrand === b.slug && <span className="w-1.5 h-1.5 rounded-full bg-primary" />}
               </button>
             ))}
           </div>
@@ -252,24 +282,19 @@ export function ProductsFilters({
 
             <div className="mb-5">
               <p className="text-sm font-semibold text-slate-700 mb-2.5">مرتب‌سازی</p>
-              <RadioGroup value={activeSort} onValueChange={handleSort} className="gap-2">
-                {SORTS.map((s) => (
-                  <div key={s.value} className="flex items-center space-x-2 space-x-reverse">
-                    <RadioGroupItem value={s.value} id={`msort-${s.value}`} className="border-slate-300" />
-                    <Label htmlFor={`msort-${s.value}`} className="text-sm cursor-pointer">{s.label}</Label>
-                  </div>
-                ))}
-              </RadioGroup>
+              <SortSegmented active={activeSort} onChange={handleSort} />
             </div>
 
             <Separator className="my-4" />
 
             <div className="mb-5">
               <p className="text-sm font-semibold text-slate-700 mb-2.5">دسته‌بندی</p>
-              <div className="space-y-2.5">
+              <div className="space-y-1.5">
                 <button
                   onClick={() => handleCategory("")}
-                  className={`block w-full text-right text-sm px-3 py-2 rounded-lg ${!activeCategory ? "bg-primary/10 text-primary font-medium" : "text-slate-600"}`}
+                  className={`block w-full text-right text-sm px-3 py-2.5 rounded-xl transition-colors hover:bg-primary/5 ${
+                    !activeCategory ? "bg-primary/10 text-primary font-semibold" : "text-slate-600"
+                  }`}
                 >
                   همه دسته‌بندی‌ها
                 </button>
@@ -277,7 +302,9 @@ export function ProductsFilters({
                   <button
                     key={c.id}
                     onClick={() => handleCategory(c.slug)}
-                    className={`block w-full text-right text-sm px-3 py-2 rounded-lg ${activeCategory === c.slug ? "bg-primary/10 text-primary font-medium" : "text-slate-600"}`}
+                    className={`block w-full text-right text-sm px-3 py-2.5 rounded-xl transition-colors hover:bg-primary/5 ${
+                      activeCategory === c.slug ? "bg-primary/10 text-primary font-semibold" : "text-slate-600"
+                    }`}
                   >
                     {c.name}
                   </button>
@@ -289,10 +316,12 @@ export function ProductsFilters({
 
             <div className="mb-5">
               <p className="text-sm font-semibold text-slate-700 mb-2.5">برند</p>
-              <div className="space-y-2.5">
+              <div className="space-y-1.5">
                 <button
                   onClick={() => handleBrand("")}
-                  className={`block w-full text-right text-sm px-3 py-2 rounded-lg ${!activeBrand ? "bg-primary/10 text-primary font-medium" : "text-slate-600"}`}
+                  className={`block w-full text-right text-sm px-3 py-2.5 rounded-xl transition-colors hover:bg-primary/5 ${
+                    !activeBrand ? "bg-primary/10 text-primary font-semibold" : "text-slate-600"
+                  }`}
                 >
                   همه برندها
                 </button>
@@ -300,7 +329,9 @@ export function ProductsFilters({
                   <button
                     key={b.id}
                     onClick={() => handleBrand(b.slug)}
-                    className={`block w-full text-right text-sm px-3 py-2 rounded-lg ${activeBrand === b.slug ? "bg-primary/10 text-primary font-medium" : "text-slate-600"}`}
+                    className={`block w-full text-right text-sm px-3 py-2.5 rounded-xl transition-colors hover:bg-primary/5 ${
+                      activeBrand === b.slug ? "bg-primary/10 text-primary font-semibold" : "text-slate-600"
+                    }`}
                   >
                     {b.name}
                   </button>
