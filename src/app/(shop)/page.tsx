@@ -145,7 +145,7 @@ export default async function HomePage() {
             <div className="hidden lg:flex justify-center relative">
               <div className="relative w-[400px] h-[400px]">
                 <Image
-                  src="https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=600&q=80"
+                  src="/products/photo-1601784551446-20c9e07cdbdb.webp"
                   alt="گوشی موبایل"
                   className="object-contain drop-shadow-[0_25px_40px_rgba(0,0,0,0.4)]"
                   fill
@@ -269,7 +269,7 @@ export default async function HomePage() {
             <div className="hidden lg:flex justify-center">
               <div className="relative w-72 h-72">
                 <Image
-                  src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600&q=80"
+                  src="/products/photo-1511707171634-5f897ff02aa9.webp"
                   alt="آیفون"
                   fill
                   className="object-contain"

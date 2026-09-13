@@ -99,8 +99,7 @@ async function main() {
   allSubCats.forEach((c) => subCatMap.set(c.slug, c.id));
 
   // Products
-  const baseImg = (id: string) =>
-    `https://images.unsplash.com/${id}?w=600&h=600&fit=crop&q=80`;
+  const baseImg = (id: string) => `/products/${id}.webp`;
 
   const productsData = [
     // ===== اپل =====
@@ -406,8 +405,8 @@ async function main() {
       price: 1890000,
       originalPrice: 2100000,
       stock: 60,
-      image: baseImg("photo-1615048429826-5f4849df0f7a"),
-      images: [baseImg("photo-1615048429826-5f4849df0f7a")],
+      image: baseImg("photo-1583863788434-e58a36330cf0"),
+      images: [baseImg("photo-1583863788434-e58a36330cf0")],
       colors: [],
       storageOptions: [],
       brandSlug: "huawei",
@@ -515,8 +514,8 @@ async function main() {
       price: 890000,
       originalPrice: 1100000,
       stock: 45,
-      image: baseImg("photo-1609592806703-a21f4729eaf9"),
-      images: [baseImg("photo-1609592806703-a21f4729eaf9")],
+      image: baseImg("photo-1606811971618-4486d14f3f99"),
+      images: [baseImg("photo-1606811971618-4486d14f3f99")],
       colors: [],
       storageOptions: [],
       brandSlug: "xiaomi",
